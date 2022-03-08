@@ -83,14 +83,7 @@ namespace MyFirstWeb.Models
             foreach (Course course in courses)
             {
                 var schList = new List<Subject>
-                {
-                    new Subject {Name = "Math", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Grammar", CourseId = course.Id, Id = Guid.NewGuid().ToString()},                    
-                    new Subject {Name = "Natural Science", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Social Studies", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Software Dev.", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Physical Ed.", CourseId = course.Id, Id = Guid.NewGuid().ToString()}
-                };
+                {};
                 completeList.AddRange(schList);
                 //course.Subjects ==  schList;
             }
