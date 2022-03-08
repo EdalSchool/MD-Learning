@@ -41,6 +41,7 @@ namespace MyFirstWeb.Controllers
 
                 subject.Id = Guid.NewGuid().ToString();
                 subject.CourseId = school.Id;
+                subject.Course = subject.Course;
                 _context.Subjects.Add(subject);
                 _context.SaveChanges();
                 ViewBag.ExtraMessage = "Created Subject";
