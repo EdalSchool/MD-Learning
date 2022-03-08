@@ -15,6 +15,7 @@ namespace MyFirstWeb
     {
         public static void Main(string[] args)
         {
+            //teSTING
             //CreateHostBuilder(args).Build().Run();
             var host = CreateHostBuilder(args).Build();
 
