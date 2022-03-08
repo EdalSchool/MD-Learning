@@ -1,0 +1,33 @@
+﻿@using MyFirstWeb.Models
+
+@model MyFirstWeb.Models.Course
+
+@{
+    ViewData["Title"] = "Course Creation";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+    <div> The Name field is required. </div>
+    <div asp-validation-summary="All"></div>
+<form method = "POST">
+
+    <div>
+        <label asp-for="Name">Name:</label>
+        @Html.TextBoxFor(m=>m.Name,new {@Value = "Enter Name"})
+    </div>
+    <div>
+        <label asp-for="Address">Address:</label>
+        @Html.TextBoxFor(m=>m.Address,new {@Value = "Enter Address"})
+    </div>
+    <div>    
+        <label asp-for = "Day"></label>
+        @Html.DropDownList("Day", Html.GetEnumSelectList<DayType>(),
+                            "Select a day",
+                            new{@class = "form-control"})
+    </div>
+    <input type = "submit"/>
+</form>
+
+<p><i>@ViewBag.Date</i></p>     

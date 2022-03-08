@@ -1,0 +1,44 @@
+﻿@using MyFirstWeb.Models;
+
+@model Course
+
+@{
+    ViewData["Title"] = "Courses";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2>@ViewBag.ExtraMessage</h2>
+
+<a class="btn btn-outline-primary" href="/course"><i class="fa-solid fa-circle-left"></i> Back to School</a>
+
+<p>
+    Name: @Model.Name <br/>
+    Id: @Model.Id
+</p>
+
+<table class =  "table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th >Actions</th>
+        </tr>
+    </thead>
+<tbody>
+@foreach(var subject in Model.Subjects)
+{
+    <tr>
+            <td>@subject.Name</td>
+        <td>
+            <a class="btn btn-primary" href="/subject/index/@subject.Id"><i class="fa-solid fa-eye"></i> Details</a>
+            <a class="btn btn-secondary" href="/subject/edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+            <a class="btn btn-danger" href="/subject/delete"><i class="fa-solid fa-trash"></i> Delete</a>
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+   <a class="btn btn-success" href="/subject/create"><i class="fa-solid fa-plus"></i> Add Subject</a>
+ 
+
+<p><i>@ViewBag.Date</i></p>

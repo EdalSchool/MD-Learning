@@ -1,0 +1,21 @@
+﻿@using MyFirstWeb.Models
+
+@model School
+
+@{
+    ViewData["Title"] = "School Information";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h3><strong>Name:</strong> @Model.Name</h3>
+<address>
+    <p><strong>Country:</strong> @Model.Country</p>
+    <p><strong>State:</strong> @Model.State</p>
+    <p><strong>City:</strong> @Model.City</p>
+    <p><strong>Address:</strong> @Model.Address</p>
+    <p><strong>Fundation Year:</strong> @Model.FundationYear</p>
+</address>
+
+<a class="btn btn-primary" href="/student"><i class="fa-solid fa-user-group"></i> Students</a>
+<a class="btn btn-primary" href="/course"><i class="fa-solid fa-chalkboard-user"></i> Courses</a>

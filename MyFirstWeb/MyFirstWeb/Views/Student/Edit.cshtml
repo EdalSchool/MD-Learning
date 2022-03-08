@@ -1,0 +1,34 @@
+﻿@using MyFirstWeb.Models
+
+@model Student
+
+@{
+    ViewData["Title"] = "Student Edition";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+    <div asp-validation-summary="All"></div>
+<form method = "POST">
+
+    <div>
+        <label asp-for="Name">Name:</label>
+        @Html.HiddenFor(m=>m.Id)
+        @Html.TextBoxFor(m=>m.Name,new {@Value = "Enter Name"})
+        @Html.DropDownListFor(m=>m.CourseId,new SelectList(ViewData["Courses"] as IEnumerable<Course>, "Id","Name"),"Select Course")
+    </div>
+   
+<div asp-validation-summary="All"></div>
+    <div>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <a href="/student" class="btn btn-outline-primary">Cancel</a>
+            <button type="submit" href="/student" class="btn btn-secondary"> Edit</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+<p><i>@ViewBag.Date</i></p>     

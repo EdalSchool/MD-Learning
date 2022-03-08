@@ -1,0 +1,16 @@
+﻿@using MyFirstWeb.Models;
+
+@model Subject
+
+@{
+    ViewData["Title"] = "Course Information";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.EditExtraMessage</h2>
+
+<p>
+    New Name: @Model.Name <br/>
+</p>
+
+<p><i>@ViewBag.Date</i></p>

@@ -1,0 +1,23 @@
+﻿@using MyFirstWeb.Models
+
+@model MyFirstWeb.Models.Subject
+
+@{
+    ViewData["Title"] = "Course Creation";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+    <div> The Name field is required. </div>
+    <div asp-validation-summary="All"></div>
+<form method = "POST">
+
+    <div>
+        <label asp-for="Name">Name:</label>
+        @Html.TextBoxFor(m=>m.Name,new {@Value = "Enter Name"})
+    </div>
+    <input type = "submit"/>
+</form>
+
+<p><i>@ViewBag.Date</i></p>     

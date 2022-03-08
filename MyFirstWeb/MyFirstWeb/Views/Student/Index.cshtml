@@ -1,0 +1,20 @@
+﻿@using MyFirstWeb.Models
+
+@model Student
+
+@{
+    ViewData["Title"] = "Student Information";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2>@ViewBag.ExtraMessage</h2>
+
+<p>
+    Name: @Model.Name <br>
+    Id : @Model.Id
+</p>
+    
+    <a class="btn btn-outline-primary" href="/student"><i class="fa-solid fa-circle-left"></i> Back to Students</a>
+
+<p><i>@ViewBag.Date</i></p>

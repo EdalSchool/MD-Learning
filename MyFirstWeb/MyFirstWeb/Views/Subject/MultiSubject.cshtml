@@ -1,0 +1,16 @@
+﻿@using MyFirstWeb.Models
+
+
+@model IEnumerable<Subject>
+
+@{
+    ViewData["Title"] = "Subject Information";
+    Layout = "_Layout";
+    ViewData["rootView"] = "Subject";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@await Html.PartialAsync("_ObjectSchoolList")
+
+<p><i>@ViewBag.Date</i></p>
