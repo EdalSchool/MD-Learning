@@ -15,6 +15,7 @@
     <div>
         <label asp-for="Name">Name:</label>
         @Html.TextBoxFor(m=>m.Name,new {@Value = "Enter Name"})
+        @Html.HiddenFor(m=>m.CourseId)
     </div>
     <input type = "submit"/>
 </form>
