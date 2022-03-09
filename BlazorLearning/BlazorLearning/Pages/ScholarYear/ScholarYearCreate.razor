@@ -1,0 +1,28 @@
+﻿@page "/scholaryear/create"
+@inject Data.ApplicationDbContext context
+@inject NavigationManager NavigationManager
+
+<h3>ScholarYear Create</h3>
+
+<EditForm Model=@newYear OnSubmit=@CreateYear >
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="name" @bind-Value="newYear.Name" />
+
+    <button class="btn btn-outline-primary" type="submit">Create</button>
+
+</EditForm>
+
+@code {
+    public Data.ScholarYear newYear = new();
+
+    void CreateYear(){
+        newYear.Id = Guid.NewGuid();
+        newYear.CreatedDate = DateTime.Now;
+        context.Add(newYear);
+        context.SaveChanges();
+
+        NavigationManager.NavigateTo("/scholaryear");
+    }
+}

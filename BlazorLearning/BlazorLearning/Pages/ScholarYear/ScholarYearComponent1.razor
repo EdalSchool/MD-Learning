@@ -1,0 +1,15 @@
+﻿
+<tr>
+    <td>@Data.Name</td>
+    <td>@Data.CreatedDate.ToShortDateString()</td>
+    <td><a class="btn btn-outline-primary" href="/scholaryear/@Data.Id">View</a></td>
+</tr>
+
+@code {
+    [Parameter]
+    public Data.ScholarYear Data { get; set; }
+
+    protected override void OnInitialized()
+    {
+    }
+}
