@@ -25,19 +25,18 @@ namespace MyFirstWeb.Models
             school.State = "Arizona";
             school.City = "Coconino";
             school.Address = "Great Canyon Street";
-            school.FundationYear = 2021;
+            school.FundationYear = 2018;
             school.Id = Guid.NewGuid().ToString();
             modelBuilder.Entity<School>().HasData(school);
 
             //{
-            //    // Load the school Courses
-            //    //var courses = LoadCourses(school);
-            //    // For each course load subjects
-            //    //var subjects = LoadSubjects(courses);
-            //    // For each course load students
-            //    //var students = LoadStudents(courses);
+            //    Load the school Courses
+            //    var courses = LoadCourses(school);
+            //    For each course load subjects
+            //   var subjects = LoadSubjects(courses);
+            //    For each course load students
+            //   var students = LoadStudents(courses);
 
-            //    
             //    modelBuilder.Entity<Course>().HasData(courses.ToArray());
             //    modelBuilder.Entity<Subject>().HasData(subjects.ToArray());
             //    modelBuilder.Entity<Student>().HasData(students.ToArray());
