@@ -1,0 +1,25 @@
+﻿<input type = "text" @bind-value = "@message"/>
+<input type = "text" @bind-value = "@message2"/>
+<input type = "button" value = "Click me" @onclick = "ChangeText"/>
+<div>
+    @message
+</div>
+
+@code{
+
+    [Parameter]
+    public string Message { get; set; }
+
+    string message = "A content";
+    string message2;
+
+    protected override async Task OnInitializedAsync()
+    {
+        message = Message;
+    }
+
+    private void ChangeText()
+    {
+        message = message2;
+    }
+}
