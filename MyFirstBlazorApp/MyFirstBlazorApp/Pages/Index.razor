@@ -1,0 +1,17 @@
+﻿@page "/"
+
+<input type = "text" @bind-value = "@message"/>
+<input type = "text" @bind-value = "@message"/>
+<input type = "button" value = "Click me" @onclick = "ChangeText"/>
+<div>
+    @message
+</div>
+
+@code{
+    string message = "A content";
+
+    private void ChangeText()
+    {
+        
+    }
+}
