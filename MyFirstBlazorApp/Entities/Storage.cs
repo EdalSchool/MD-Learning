@@ -26,6 +26,6 @@ namespace Entities
         public Warehouse Warehouse { get; set; }
 
         //Relationship with InOuts
-        public ICollection<InOuts> InOuts { get; set; }
+        public ICollection<InOut> InOut { get; set; }
     }
 }

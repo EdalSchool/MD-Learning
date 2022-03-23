@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class InOuts
+    public class InOut
     {
         [Key]
         [StringLength(50)]
