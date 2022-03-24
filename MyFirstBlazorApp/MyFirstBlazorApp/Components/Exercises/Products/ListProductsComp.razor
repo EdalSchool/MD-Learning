@@ -1,6 +1,17 @@
 ﻿@using Entities
 @using Business
 
+<hr/>
+<select class="form-control" @onchange="CategoryChange">
+    <option value=""> Selected a category</option>
+    
+    @foreach(var category in categories)
+    {
+        <option value = "@category.CategoryId">@category.CategoryName</option>
+    }
+</select>
+<hr/>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -10,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var product in products)
+        @foreach(var product in temproducts)
         {
             <tr>
                 <td>@product.ProductName</td>
@@ -20,12 +31,24 @@
         }
     </tbody>
 </table>
+@message
 
 @code {
     List<Product> products = new List<Product>();
+    List<Product> temproducts = new List<Product>();
+    List<Category> categories = new List<Category>();
+    string message;
 
     protected override async Task OnInitializedAsync()
     {
         products = BsProduct.ProductList();
+        temproducts = products;
+        categories = BsCategory.CategoryList();
+    }
+
+    private void CategoryChange(ChangeEventArgs e)
+    {
+        //message = e.Value.ToString();
+        temproducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
     }
 }
