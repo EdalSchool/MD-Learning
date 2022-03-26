@@ -1,0 +1,47 @@
+﻿@using Entities
+@using Business
+@inject NavigationManager NavManager
+
+<EditForm Model="oProduct">
+    <div class="form-group">
+        <label>Product:</label>
+        <InputText class="form-control" @bind-Value="oProduct.ProductName" />
+    </div>
+
+    <div class="form-group">
+        <label>Description:</label>
+        <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" />
+    </div>
+
+    <div class="form-group">
+        <label>Category:</label>
+        <InputSelect class="form-control" @bind-Value="oProduct.CategoryId">
+            @foreach (var category in categories)
+            {
+                <option value="@category.CategoryId">@category.CategoryName</option>
+            }
+        </InputSelect>
+    </div>
+    
+    <input type="button" class="btn btn-success" value="Update Product" @onclick="UpdateProduct" />
+</EditForm>
+
+@code {
+    [Parameter]
+    public string IdProduct { get; set; }
+
+    Product oProduct = new Product();
+    List<Category> categories = new List<Category>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = BsCategory.CategoryList();
+        oProduct = BsProduct.ProductById(IdProduct);
+    }
+
+    private void UpdateProduct()
+    {
+        BsProduct.ProductUpdate(oProduct);
+        NavManager.NavigateTo("products");
+    }
+}

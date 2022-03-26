@@ -18,6 +18,14 @@ namespace Business
             }
         }
 
+        public static Product ProductById(string Id)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                return db.Products.ToList().LastOrDefault(p => p.ProductId==Id);
+            }
+        }
+
         public static void ProductCreation(Product oProduct)
         {
             using (var db = new BlazorAppContext())    
