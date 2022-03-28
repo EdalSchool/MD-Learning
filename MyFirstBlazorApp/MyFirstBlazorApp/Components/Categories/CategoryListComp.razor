@@ -1,5 +1,47 @@
-﻿<h3>CategoryListComp</h3>
+﻿@using Entities
+@using Business
+
+<a class="btn btn-success" href="category/create"><i class="fa-solid fa-plus"></i> Add Category</a>
+
+@if(categories == null)
+{
+    <div class="spinner-border text-secondary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <br/>
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table id="categoriesTable" class="display table table-hover">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var category in categories)
+            {
+                <tr>
+                    <td>@category.CategoryId</td>
+                    <td>@category.CategoryName</td>
+                    <td>
+                        <a class="btn btn-secondary" href="category/update/@category.CategoryId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
 
 @code {
+    private List<Category> categories = new List<Category>();
 
+    protected override async Task OnInitializedAsync()
+    {
+        categories = BsCategory.CategoryList();
+    }
 }
