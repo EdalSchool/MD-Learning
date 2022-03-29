@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business
 {
@@ -34,6 +35,18 @@ namespace Business
                 var product = db.Storages.ToList().Where(s => s.StorageId == idStorage);
 
                 return product.Any();
+            }
+        }
+
+        public static List<Storage> StorageByWarehouse(string idWarehouse)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                return db.Storages
+                    .Include(s => s.Product)
+                    .Include(s => s.Warehouse)
+                    .Where(s => s.WarehouseId == idWarehouse)
+                    .ToList();
             }
         }
 
