@@ -27,6 +27,16 @@ namespace Business
             }
         }
 
+        public static bool IsProdctInWarehouse(string idStorage)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                var product = db.Storages.ToList().Where(s => s.StorageId == idStorage);
+
+                return product.Any();
+            }
+        }
+
         public static void StorageUpdate(Storage oStorage)
         {
             using (var db = new BlazorAppContext())
