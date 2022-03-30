@@ -1,3 +1,3 @@
 # MD-Learning
 
-Just learning ...
+Just learning
