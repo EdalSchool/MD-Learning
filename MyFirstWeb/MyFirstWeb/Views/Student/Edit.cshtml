@@ -13,7 +13,7 @@
 <form method = "POST">
 
     <div>
-        <label asp-for="Name">Name:</label>
+        <label asp-for="Name"></label>
         @Html.HiddenFor(m=>m.Id)
         @Html.TextBoxFor(m=>m.Name,new {@Value = "Enter Name"})
         @Html.DropDownListFor(m=>m.CourseId,new SelectList(ViewData["Courses"] as IEnumerable<Course>, "Id","Name"),"Select Course")

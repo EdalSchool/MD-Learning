@@ -1,0 +1,17 @@
+﻿@page "/scholaryear/{scholaryearid}"
+@inject Data.ApplicationDbContext context
+
+<h3>Scholar Year <span class="badge bg-primary">@scholarYear.Name</span></h3>
+
+<BlazorLearning.Pages.Course.CourseIndex ScholarYearId=@scholaryearid />
+
+@code {
+    [Parameter]
+    public string scholaryearid { get; set; }
+    public Data.ScholarYear scholarYear;
+
+    protected override void OnInitialized()
+    {
+        scholarYear = context.ScholarYears.First(x => x.Id == Guid.Parse(scholaryearid));
+    }
+}

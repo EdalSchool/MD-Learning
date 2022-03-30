@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyFirstWeb.Models
 {
-    public class School : ObjectSchoolBase
+    public class School : ObjectSchoolBase 
     {
         public int FundationYear { get; set; }
-
         public string Country { get; set; }
         public string State { get; set; }
         public string City { get; set; }
@@ -25,7 +25,6 @@ namespace MyFirstWeb.Models
             State = state;
             City = city;
         }
-
         public School()
         {
 

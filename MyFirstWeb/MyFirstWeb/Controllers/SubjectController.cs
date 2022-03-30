@@ -24,11 +24,14 @@ namespace MyFirstWeb.Controllers
             }
         }
 
-        public IActionResult Create()
+        public IActionResult Create(string id)
         {
             ViewBag.Date = DateTime.Now;
-
-            return View();
+            var subject = new Subject()
+            {
+                CourseId = id.ToString()
+            };
+            return View(subject);
         }
 
         [HttpPost]
@@ -40,7 +43,7 @@ namespace MyFirstWeb.Controllers
                 var school = _context.Subjects.FirstOrDefault();
 
                 subject.Id = Guid.NewGuid().ToString();
-                subject.CourseId = school.Id;
+                //subject.CourseId = ;
                 _context.Subjects.Add(subject);
                 _context.SaveChanges();
                 ViewBag.ExtraMessage = "Created Subject";

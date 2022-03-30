@@ -25,22 +25,22 @@ namespace MyFirstWeb.Models
             school.State = "Arizona";
             school.City = "Coconino";
             school.Address = "Great Canyon Street";
-            school.FundationYear = 2021;
+            school.FundationYear = 2018;
             school.Id = Guid.NewGuid().ToString();
+            modelBuilder.Entity<School>().HasData(school);
 
-            {
-                // Load the school Courses
-                var courses = LoadCourses(school);
-                // For each course load subjects
-                var subjects = LoadSubjects(courses);
-                // For each course load students
-                var students = LoadStudents(courses);
+            //{
+            //    Load the school Courses
+            //    var courses = LoadCourses(school);
+            //    For each course load subjects
+            //   var subjects = LoadSubjects(courses);
+            //    For each course load students
+            //   var students = LoadStudents(courses);
 
-                modelBuilder.Entity<School>().HasData(school);
-                modelBuilder.Entity<Course>().HasData(courses.ToArray());
-                modelBuilder.Entity<Subject>().HasData(subjects.ToArray());
-                modelBuilder.Entity<Student>().HasData(students.ToArray());
-            }
+            //    modelBuilder.Entity<Course>().HasData(courses.ToArray());
+            //    modelBuilder.Entity<Subject>().HasData(subjects.ToArray());
+            //    modelBuilder.Entity<Student>().HasData(students.ToArray());
+            //}
         }
         private List<Student> LoadStudents(List<Course> courses)
         {
@@ -83,14 +83,7 @@ namespace MyFirstWeb.Models
             foreach (Course course in courses)
             {
                 var schList = new List<Subject>
-                {
-                    new Subject {Name = "Math", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Grammar", CourseId = course.Id, Id = Guid.NewGuid().ToString()},                    
-                    new Subject {Name = "Natural Science", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Social Studies", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Software Dev.", CourseId = course.Id, Id = Guid.NewGuid().ToString()},
-                    new Subject {Name = "Physical Ed.", CourseId = course.Id, Id = Guid.NewGuid().ToString()}
-                };
+                {};
                 completeList.AddRange(schList);
                 //course.Subjects ==  schList;
             }
