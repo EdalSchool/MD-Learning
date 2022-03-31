@@ -12,32 +12,38 @@
 </div>
 <hr />
 <EditForm Model="oInOut">
-    <div class="form-group"
-            <InputSelect class="form-control" @bind-Value="oInOut.StorageId">
-                <option value="">Select a product...</option>
+    <div class="form-group">
+        <InputSelect class="form-control" @bind-Value="oInOut.StorageId">
+            <option value="">Select a product...</option>
             @foreach (var storage in storages)
             {
-                        <option value="@storage.StorageId">@storage.Product.ProductName</option>
+                <option value="@storage.StorageId">@storage.Product.ProductName</option>
             }
-            </InputSelect>
-        </div>
-    <div class="form-group"
-        <label>Write the quantity</label>
-            <InputNumber class="form-control" @bind-Value="oInOut.Quantity"/>
-        </div>
-    <div class="form-group">
-        <label>It's an input?</label>
-        <InputCheckbox class="form-control" @bind-Value="oInOut.IsInput" />
+        </InputSelect>
     </div>
 
-    <input class="btn btn-outline-success" type="button" value="@buttonValue" @onclick="SaveInOut" />
+    <div class="form-group">
+        <label>Write the quantity</label>
+        <InputNumber class="form-control" @bind-Value="oInOut.Quantity" />
+    </div>
+    <div class="form-group">
+        <InputCheckbox class="form-check-input" type="check" @bind-Value="oInOut.IsInput" />
+        <label>It's an input?</label>
+    </div>
+    <div>
+        <input class="btn btn-outline-success" type="button" value="@buttonValue" @onclick="SaveInOut" />
+    </div>
 </EditForm>
+<div class="text-center h4">@message</div>
 
 @code {
-    InOut oInOut = new InOut();
     List<Warehouse> warehouses = new List<Warehouse>();
     List<Storage> storages = new List<Storage>();
+    InOut oInOut = new InOut();
+    Product oProduct = new Product();
+    Storage oStorage = new Storage();
 
+    string message;
     string buttonValue => oInOut.IsInput ? "Check In" : "Check Out";
 
     protected override async Task OnInitializedAsync()
@@ -54,6 +60,44 @@
 
     private void SaveInOut()
     {
+        oStorage = storages.LastOrDefault(s => s.StorageId == oInOut.StorageId);
+        oProduct = oStorage.Product;
 
+        if (oInOut.IsInput)
+        {
+            oStorage.ProductQuantity = oStorage.ProductQuantity + oInOut.Quantity;
+            BsStorage.StorageUpdate(oStorage);
+
+            oProduct.TotalQuantity = oProduct.TotalQuantity + oInOut.Quantity;
+            BsProduct.ProductUpdate(oProduct);
+
+            message = $"The product {oProduct.ProductName} was saved";
+        }
+        else
+        {
+            if (ItsBiggerThanZero(oInOut.Quantity, oStorage.ProductQuantity))
+            {
+                oStorage.ProductQuantity = oStorage.ProductQuantity - oInOut.Quantity;
+                BsStorage.StorageUpdate(oStorage);
+
+                oProduct.TotalQuantity = oProduct.TotalQuantity - oInOut.Quantity;
+                BsProduct.ProductUpdate(oProduct);
+
+                message = $"The product {oProduct.ProductName} was saved";
+            }
+            else
+            {
+                message = $"There is not enough quantity in the warehouse for the product {oProduct.ProductName}";
+            }
+        }
+    }
+
+    private bool ItsBiggerThanZero(int quantity, int storageQuantity)
+    {
+        if (storageQuantity > quantity)
+        {
+            return true;
+        }
+        return false;
     }
 }

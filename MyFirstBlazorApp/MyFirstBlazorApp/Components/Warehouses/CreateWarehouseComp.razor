@@ -1,0 +1,38 @@
+﻿@using Entities
+@using Business
+@inject NavigationManager NavManager
+
+<EditForm Model="oWarehouse">
+    <DataAnnotationsValidator/>
+    <div class="form-group">
+        <label for="warehouseId">Name:</label>
+        <InputText id="warehouseId"@bind-Value="oWarehouse.WarehouseName" class="form-control"/>
+        <ValidationMessage For="@(() => oWarehouse.WarehouseName)" class="text-danger"/>
+    </div>
+
+    <div class="form-group">
+        <label>Address:</label>
+        <InputText @bind-Value="oWarehouse.WarehouseId" class="form-control" />
+        <ValidationMessage For="@(() => oWarehouse.WarehouseAddress)" class="text-danger"/>
+    </div>
+    
+    <div class="form-group">
+        <br/><input type="button" value="Add Warehouse" @onclick="SaveWarehouse" class="form-control btn btn-success" />
+    </div>
+</EditForm>
+
+
+@code{
+    Warehouse oWarehouse = new Warehouse();
+
+    private void SaveWarehouse()
+    {
+        BsWarehouse.WarehouseCreation(oWarehouse);
+        NavManager.NavigateTo("category/list");
+    }
+
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine("OnValidSubmit");
+    }
+}

@@ -41,7 +41,7 @@ namespace DataAccess
 
             modelBuilder.Entity<Warehouse>().HasData
             (
-                new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "New York Warehouse", WarehouseAddress = "New York City, New York" },
+                new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "New York Warehouse", WarehouseAddress = "New York City, New York"},
                 new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "Kansas Warehouse", WarehouseAddress = "Missouri, Kansas" },
                 new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "Idaho Warehouse", WarehouseAddress = "Idaho Falls, Idaho " }
             );
