@@ -2,10 +2,10 @@
 @using Business
 @inject NavigationManager NavManager
 
-<EditForm Model="oProduct">
+<div>
     <div class="form-group">
         <label>Name:</label>
-        <InputText class="form-control" @bind-Value="oProduct.ProductName" />
+        <InputText class="form-control" @bind-Value="oProduct.ProductName"/>
     </div>
 
     <div class="form-group">
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-        <label>Category:</label>
+        <label>Category:</label>ff
         <InputSelect class="form-control" @bind-Value="oProduct.CategoryId">
             @foreach (var category in categories)
             {
@@ -22,26 +22,9 @@
             }
         </InputSelect>
     </div>
-    
-    <input type="button" class="btn btn-success" value="Update Product" @onclick="UpdateProduct" />
-</EditForm>
+</div>
 
 @code {
-    [Parameter]
-    public string IdProduct { get; set; }
-
     Product oProduct = new Product();
     List<Category> categories = new List<Category>();
-
-    protected override async Task OnInitializedAsync()
-    {
-        categories = BsCategory.CategoryList();
-        oProduct = BsProduct.ProductById(IdProduct);
-    }
-
-    private void UpdateProduct()
-    {
-        BsProduct.ProductUpdate(oProduct);
-        NavManager.NavigateTo("products");
-    }
 }

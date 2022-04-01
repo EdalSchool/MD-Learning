@@ -28,13 +28,30 @@ namespace Business
             }
         }
 
-        public static bool IsProdctInWarehouse(string idStorage)
+        /// <summary>
+        /// Checks if a product has been in a warehouse
+        /// </summary>
+        /// <param name="idStorage"></param>
+        /// <returns></returns>
+        public static bool IsProductInWarehouse(string idStorage)
         {
             using (var db = new BlazorAppContext())
             {
-                var product = db.Storages.ToList().Where(s => s.StorageId == idStorage);
+                return db.Storages.Any(s => s.StorageId == idStorage);
+            }
+        }
 
-                return product.Any();
+        /// <summary>
+        /// Checks if a product has been in a warehouse
+        /// </summary>
+        /// <param name="idProduct">Specifies the id for the product to be searched</param>
+        /// <param name="idWarehouse">Specifies the id for the warehouse to be searched</param>
+        /// <returns></returns>
+        public static bool IsProductInWarehouse(string idProduct, string idWarehouse)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                return db.Storages.Any(s => s.ProductId == idProduct && s.WarehouseId == idWarehouse);
             }
         }
 

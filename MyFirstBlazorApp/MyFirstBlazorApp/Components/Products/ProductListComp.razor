@@ -1,13 +1,14 @@
 ﻿@using Entities
 @using Business
 
-    <a class="btn btn-success" href="/product/create"><i class="fa-solid fa-plus"></i> Create Product</a>
-    <a class="btn btn-success" href="category/create"<i class="fa-solid fa-plus"></i> Add Category</a>
+<a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> Create Product</a>
+<a class="btn btn-primary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
+<a class="btn btn-outline-success" href="category/create"><i class="fa-solid fa-plus"></i> Add Category</a>
 
     <hr/>
     <select class="form-control" @onchange="CategoryChange">
         <option value=""> Selected a category...</option>
-    
+
         @foreach(var category in categories)
         {
             <option value="@category.CategoryId">@category.CategoryName</option>
@@ -33,7 +34,8 @@
                     <td>@product.ProductId</td>
                     <td>@product.CategoryId</td>
                     <td>@product.TotalQuantity</td>
-                    <td><a class="btn btn-secondary" href="/product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
+                    <td><a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>   <a class="btn btn-primary" href="product/details/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a></td>
+                    
                 </tr>
             }
         </tbody>

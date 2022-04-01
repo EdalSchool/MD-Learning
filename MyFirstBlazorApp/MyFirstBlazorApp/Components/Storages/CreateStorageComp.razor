@@ -1,35 +1,31 @@
 ﻿@using Entities
 @using Business
 
-<div>
-    <EditForm Model="oStorage">
-        <div class="form-group">
-            <label>Warehouse:</label>
-            <InputSelect @bind-Value="oStorage.WarehouseId" class="form-control">
-                <option value="">Select a warehouse...</option>
-                @foreach (var warehouse in warehouses)
-                {
-                    <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
-                }
-            </InputSelect>
-        </div>
-        <div class="form-group">
-            <label>Product:</label>
-            <InputSelect @bind-Value="oStorage.ProductId" class="form-control">
-                <option value="">Select a product...</option>
-                @foreach (var product in products)
-                {
-                    <option value="@product.ProductId">@product.ProductName</option>
-                }
-            </InputSelect>
-        </div>
-        <input type="button" class="btn btn-warning" value="Store Product" @onclick="SaveStorage" />
-
-        @message
-    </EditForm>
-</div>
+<EditForm Model="oStorage">
+    <div class="form-group">
+        <label>Warehouse:</label>
+        <InputSelect @bind-Value="oStorage.WarehouseId" class="form-control">
+            <option value="">Select a warehouse...</option>
+            @foreach (var warehouse in warehouses)
+            {
+                <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="form-group">
+        <label>Product:</label>
+        <InputSelect @bind-Value="oStorage.ProductId" class="form-control">
+            <option value="">Select a product...</option>
+            @foreach (var product in products)
+            {
+                <option value="@product.ProductId">@product.ProductName</option>
+            }
+        </InputSelect>
+    </div>
+    <input type="button" class="btn btn-warning" value="Store Product" @onclick="SaveStorage" />
+</EditForm>
 <div class="text-center h4">
-
+    @message
 </div>
 
 @code {
@@ -47,9 +43,9 @@
 
     private void SaveStorage()
     {
-        oStorage.StorageId = $"{oStorage.WarehouseId}-{oStorage.Product}";
-        
-        if (!BsStorage.IsProdctInWarehouse(oStorage.StorageId))
+        oStorage.StorageId = $"{oStorage.WarehouseId}-{oStorage.ProductId}";
+
+        if (!BsStorage.IsProductInWarehouse(oStorage.ProductId, oStorage.WarehouseId))
         {
             oStorage.LastUpdate = DateTime.Now;
             BsStorage.StorageCreation(oStorage);
