@@ -20,6 +20,7 @@ namespace Entities
         public int TotalQuantity { get; set; }
 
         //Relationship with Category
+        public string CategoryName { get; set; }
         public string CategoryId { get; set; }
         public Category Category { get; set; }
 

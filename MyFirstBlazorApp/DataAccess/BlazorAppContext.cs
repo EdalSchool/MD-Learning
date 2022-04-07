@@ -33,6 +33,7 @@ namespace DataAccess
                 new Category { CategoryId = "HCN", CategoryName = "Home Cleaning" },
                 new Category { CategoryId = "PNC", CategoryName = "Personal Care" },
                 new Category { CategoryId = "VDG", CategoryName = "Video Games" },
+                new Category { CategoryId = "EDU", CategoryName = "Education" },
                 new Category { CategoryId = "KTN", CategoryName = "Kitchen" },
                 new Category { CategoryId = "CTH", CategoryName = "Clothes" },
                 new Category { CategoryId = "HTH", CategoryName = "Health" },

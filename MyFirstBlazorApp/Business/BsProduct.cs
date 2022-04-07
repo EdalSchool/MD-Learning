@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,13 @@ namespace Business
         {
             using (var db = new BlazorAppContext())
             {
-                return db.Products.ToList().LastOrDefault(p => p.ProductId==Id);
+                return db.Products.Include(p => p.Category).ToList().LastOrDefault(p => p.ProductId==Id);
             }
         }
 
         public static void ProductCreation(Product oProduct)
         {
-            using (var db = new BlazorAppContext())    
+            using (var db = new BlazorAppContext())
             {
                 db.Products.Add(oProduct);
                 db.SaveChanges();

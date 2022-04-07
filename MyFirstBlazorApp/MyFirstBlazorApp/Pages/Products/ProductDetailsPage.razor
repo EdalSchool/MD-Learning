@@ -1,10 +1,10 @@
 ﻿@page "/product/{IdProduct}"
 
-<ProductDetailsComp/>
+<ProductDetailsComp IdProduct="@IdProduct"/>
 
 @code {
-        [Parameter]
-    public string IdProduct{ get; set; }
+    [Parameter]
+    public string IdProduct { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

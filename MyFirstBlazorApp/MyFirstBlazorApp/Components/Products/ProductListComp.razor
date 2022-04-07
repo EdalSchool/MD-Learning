@@ -1,9 +1,19 @@
 ﻿@using Entities
 @using Business
 
+<p class="text-primary">
+    <div class="text-center">
+        <span class="fa-solid fa-industry" style="font-size:60px"></span>
+        <h2>Manew Warehouses Inc.</h2>
+        <h4>Where we store the best for YOU</h4>
+        <h6>Start managing your own storage and international sales system.</h6>
+    </div>
+</p>
+
 <a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> Create Product</a>
-<a class="btn btn-primary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
+<a class="btn btn-primary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a><br/>
 <a class="btn btn-outline-success" href="category/create"><i class="fa-solid fa-plus"></i> Add Category</a>
+<a class="btn btn-outline-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Input or an Output</a>
 
     <hr/>
     <select class="form-control" @onchange="CategoryChange">
@@ -34,25 +44,25 @@
                     <td>@product.ProductId</td>
                     <td>@product.CategoryId</td>
                     <td>@product.TotalQuantity</td>
-                    <td><a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>   <a class="btn btn-primary" href="product/details/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a></td>
-                    
+                    <td>
+                        <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                        <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
+                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    @message
 
 @code {
     List<Product> products = new List<Product>();
     List<Product> temproducts = new List<Product>();
     List<Category> categories = new List<Category>();
-    string message;
 
     protected override async Task OnInitializedAsync()
     {
         products = BsProduct.ProductList();
-        temproducts = products;
         categories = BsCategory.CategoryList();
+        temproducts = products;
     }
 
     private void CategoryChange(ChangeEventArgs e)

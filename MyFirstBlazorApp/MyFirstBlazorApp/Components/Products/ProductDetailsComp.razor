@@ -1,23 +1,24 @@
 ﻿@using Entities
 @using Business
 
-<EditForm Model="oProduct">
-    <div class="form-group">
-        <h4>Name: @oProduct.ProductName</h4>
-        <hr/>
-        <h4>Category: @oProduct.Category (@oProduct.CategoryId)</h4>
-        <hr/>
-        <h4>Reference: @oProduct.ProductId</h4>
-        <hr/>
-        <h4>Quantity in Storage: @oProduct.TotalQuantity</h4>
-    </div>
-</EditForm>
+<div class="form-group">
+    <h5>Name: @oProduct.ProductName</h5>
+    <hr/>
+    <h5>Category: (@oProduct.CategoryId)</h5>
+    <hr/>
+    <h5>Reference: @oProduct.ProductId</h5>
+    <hr/>
+    <h5>Quantity in Storage: @oProduct.TotalQuantity</h5>
+
+    <a class="btn btn-info" href="products"><i class="fa-solid fa-angles-left"></i> Back</a>
+</div>
 
 @code {
-        [Parameter]
+    [Parameter]
     public string IdProduct { get; set; }
 
     Product oProduct = new Product();
+    Category oCategory = new Category();
     List<Category> categories = new List<Category>();
 
     protected override async Task OnInitializedAsync()
