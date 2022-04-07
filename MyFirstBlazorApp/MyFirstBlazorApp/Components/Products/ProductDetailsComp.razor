@@ -4,13 +4,13 @@
 <div class="form-group">
     <h5>Name: @oProduct.ProductName</h5>
     <hr/>
-    <h5>Category: (@oProduct.CategoryId)</h5>
+    <h6>Category: @oProduct.Category.CategoryName (@oProduct.CategoryId)</h6>
     <hr/>
-    <h5>Reference: @oProduct.ProductId</h5>
+    <h6>Reference: @oProduct.ProductId</h6>
     <hr/>
-    <h5>Quantity in Storage: @oProduct.TotalQuantity</h5>
+    <h6>Quantity in Storage: @oProduct.TotalQuantity</h6>
 
-    <a class="btn btn-info" href="products"><i class="fa-solid fa-angles-left"></i> Back</a>
+    <a class="btn btn-primary" href="products"><i class="fa-solid fa-angles-left"></i> Back</a>
 </div>
 
 @code {

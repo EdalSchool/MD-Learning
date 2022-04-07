@@ -1,8 +1,77 @@
 ﻿@page "/"
 
+@using Entities
+@using Business
+
 <div class="text-center text-primary">
     <span class="fa-solid fa-industry" style="font-size:60px"></span>
     <h2>Manew Warehouses Inc.</h2>
     <h4>Where we store the best for YOU</h4>
     <h5>Start managing your own storage and international sales system.</h5>
 </div>
+
+<hr/>
+
+<a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> Create Product</a>
+<a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
+<a class="btn btn-primary" href="category/create"><i class="fa-solid fa-plus"></i> Create Category</a>
+<a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Input or an Output</a>
+
+    <hr/>
+    <select class="form-control" @onchange="CategoryChange">
+        <option value=""> Selected a category...</option>
+
+        @foreach(var category in categories)
+        {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+        }
+    </select>
+    <hr/>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Reference</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var product in temproducts)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.ProductId</td>
+                    <td>@product.CategoryId</td>
+                    <td>@product.TotalQuantity</td>
+                    <td>
+                        <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
+                        <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                        <a class="btn btn-danger" href="product/remove/@product.ProductId"><i class="fa-solid fa-trash"></i> Remove</a>
+                     </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @message;
+
+@code {
+    List<Product> products = new List<Product>();
+    List<Product> temproducts = new List<Product>();
+    List<Category> categories = new List<Category>();
+    string message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = BsProduct.ProductList();
+        categories = BsCategory.CategoryList();
+        temproducts = products;
+    }
+
+    private void CategoryChange(ChangeEventArgs e)
+    {
+        temproducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
+    }
+}

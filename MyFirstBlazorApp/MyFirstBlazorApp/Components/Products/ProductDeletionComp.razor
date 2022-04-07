@@ -1,0 +1,32 @@
+﻿@using Business
+@using Entities
+@inject NavigationManager NavManager
+
+<div class="alert alert-danger" role="alert">
+  <i class="fa-solid fa-triangle-exclamation fa-lg"></i>        Are you sure you want remove this product!?
+
+  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <input type="button" class="btn btn-danger" value="Remove" @onclick="DeleteProduct" />
+  <a class="btn btn-outline-primary" href="products">Cancel</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string IdProduct { get; set; }
+
+    Product oProduct = new Product();
+    List<Category> categories = new List<Category>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = BsCategory.CategoryList();
+        oProduct = BsProduct.ProductById(IdProduct);
+    }
+
+    private void DeleteProduct()
+    {
+        BsProduct.ProductDeletion(oProduct);
+        NavManager.NavigateTo("products");
+    }
+}

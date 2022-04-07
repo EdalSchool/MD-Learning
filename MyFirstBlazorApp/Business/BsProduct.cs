@@ -44,5 +44,14 @@ namespace Business
                 db.SaveChanges();
             }
         }
+
+        public static void ProductDeletion(Product oProduct)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                db.Products.Remove(oProduct);
+                db.SaveChanges();
+            }
+        }
     }
 }
