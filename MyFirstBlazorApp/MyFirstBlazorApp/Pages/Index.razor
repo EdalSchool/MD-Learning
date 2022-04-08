@@ -13,19 +13,22 @@
 <hr/>
 
 <a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> Create Product</a>
-<a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
 <a class="btn btn-primary" href="category/create"><i class="fa-solid fa-plus"></i> Create Category</a>
-<a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Input or an Output</a>
+<a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
+<a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Entry or an Exit</a>
 
     <hr/>
     <select class="form-control" @onchange="CategoryChange">
-        <option value=""> Selected a category...</option>
+        <option value="">Select a category...</option>
 
         @foreach(var category in categories)
         {
             <option value="@category.CategoryId">@category.CategoryName</option>
         }
-    </select>
+    }
+
+    
+</select>
     <hr/>
 
     <table class="table table-hover">
@@ -54,14 +57,22 @@
                 </tr>
             }
         </tbody>
-    </table>
-    @message;
+    </table>@if(products == null)
+    {
+        <div class="text-center text-primary">
+            <h5>
+                @nullmessage;
+                <i class="fa-solid fa-face-sad-tear"></i>
+            </h5>
+        </div>
+
+    }
 
 @code {
     List<Product> products = new List<Product>();
     List<Product> temproducts = new List<Product>();
     List<Category> categories = new List<Category>();
-    string message;
+    string nullmessage = "Sorry, there's nothing here";
 
     protected override async Task OnInitializedAsync()
     {

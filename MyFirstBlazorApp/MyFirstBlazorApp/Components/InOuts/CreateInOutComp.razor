@@ -1,6 +1,16 @@
 ﻿@using Entities
 @using Business
 
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <h4 class="alert-heading">Remember!</h4> 
+  <p>To register an entry or exit of a product, you must first store it in its proper Warehouse</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <div class="form-group">
     <select class="form-control" @onchange="ChangedWarehouse">
         <option value="">Select a warehouse...</option>
