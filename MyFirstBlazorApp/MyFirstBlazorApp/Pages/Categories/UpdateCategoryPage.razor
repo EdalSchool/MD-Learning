@@ -1,7 +1,14 @@
 ﻿@page "/category/update/{IdCategory}"
 
-<UpdateCategoryComp/>
+<UpdateCategoryComp IdCategory="@IdCategory"/>
 
 @code {
+    [Parameter]
+    public string IdCategory{ get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        IdCategory = IdCategory;
+    }
 }
+ 

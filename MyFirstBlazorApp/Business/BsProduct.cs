@@ -23,7 +23,7 @@ namespace Business
         {
             using (var db = new BlazorAppContext())
             {
-                return db.Products.Include(p => p.Category).ToList().LastOrDefault(p => p.ProductId==Id);
+                return db.Products.Include(p => p.Category).ToList().LastOrDefault(p => p.ProductId == Id);
             }
         }
 

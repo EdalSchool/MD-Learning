@@ -14,7 +14,7 @@
     </div>
     
     <input type="button" class="btn btn-success" value="Update Product" @onclick="UpdateProduct"/>
-    <a class="btn btn-primary" href="products"><i class="fa-solid fa-angles-left"></i> Back</a>
+    <a class="btn btn-primary" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
 </EditForm>
 
 @code {
@@ -33,6 +33,6 @@
     private void UpdateProduct()
     {
         BsProduct.ProductUpdate(oProduct);
-        NavManager.NavigateTo("products");
+        NavManager.NavigateTo("");
     }
 }

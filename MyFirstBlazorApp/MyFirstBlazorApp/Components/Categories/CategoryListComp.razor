@@ -1,43 +1,26 @@
 ﻿@using Entities
 @using Business
+@inject NavigationManager NavManager
 
-<a class="btn btn-success" href="category/create"><i class="fa-solid fa-plus"></i> Add Category</a>
+<a class="btn btn-primary" href="category/create"><i class="fa-solid fa-plus"></i> Create Category</a>
 
-@if(categories == null)
-{
-    <div class="spinner-border text-secondary" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-    <br/>
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table id="categoriesTable" class="display table table-hover">
-        <thead>
-            <tr>
-                <th>Reference</th>
-                <th>Category</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var category in categories)
-            {
-                <tr>
-                    <td>@category.CategoryId</td>
-                    <td>@category.CategoryName</td>
-                    <td>
-                        <a class="btn btn-secondary" href="category/update/@category.CategoryId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    
-}
+<div class=" text-center list-group">
+    <a class="list-group-item list-group-item-action active" aria-current="true">
+        <h5><strong>Categories</strong></h5>
+    </a>
+    @foreach(var category in categories)
+    {
+            <a value="@category.CategoryId" class="list-group-item list-group-item-action"><strong>@category.CategoryName (@category.CategoryId)</strong>
+                <a class="btn btn-secondary btn-sm" href="category/update/@category.CategoryId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                <a class="btn btn-danger btn-sm" href="category/remove/@category.CategoryId"><i class="fa-solid fa-trash"></i> Remove</a>
+            </a>
+                
+    }
+</div>
+<a class="btn btn-primary" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
 
 @code {
+    Category oCategory = new Category();
     private List<Category> categories = new List<Category>();
 
     protected override async Task OnInitializedAsync()

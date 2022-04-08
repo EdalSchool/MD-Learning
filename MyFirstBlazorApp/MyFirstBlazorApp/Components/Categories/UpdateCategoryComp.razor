@@ -18,11 +18,14 @@
     Category oCategory = new Category();
     List<Product> products = new List<Product>();
 
-    
+    protected override async Task OnInitializedAsync()
+    {
+        oCategory = BsCategory.CategoryById(IdCategory);
+    }
 
-    private void UpdateCategory()
+     private void UpdateCategory()
     {
         BsCategory.CategoryUpdate(oCategory);
-        NavManager.NavigateTo("products");
+        NavManager.NavigateTo("categories");
     }
 }

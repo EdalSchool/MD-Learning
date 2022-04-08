@@ -1,10 +1,11 @@
-﻿using Entities;
+﻿using DataAccess;
+using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
 
 namespace Business
 {
@@ -17,7 +18,15 @@ namespace Business
                 return db.Categories.ToList();
             }
         }
-    
+
+        public static Category CategoryById(string Id)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                return db.Categories.ToList().LastOrDefault(c => c.CategoryId == Id);
+            }
+        }
+
         public static void CategoryCreation(Category oCategory)
         {
             using (var db = new BlazorAppContext())
