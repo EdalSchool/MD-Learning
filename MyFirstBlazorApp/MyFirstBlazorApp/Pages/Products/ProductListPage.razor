@@ -19,7 +19,6 @@
 
 <hr/>
 <div class="form-group">    
-    <a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Category List</a>
     <select class="form-control" @onchange="CategoryChange">
         <option value="">Select a category...</option>
 
@@ -27,7 +26,7 @@
         {
             <option value="@category.CategoryId">@category.CategoryName</option>
         }
-    </select>
+    </select><a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Category List</a>
 </div>
 <hr/>
 <table class="table table-hover">
