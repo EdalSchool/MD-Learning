@@ -15,47 +15,45 @@
 <a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
 <a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Entry or an Exit</a>
 
-    <hr/>
-    <select class="form-control" @onchange="CategoryChange">
-        <option value="">Select a category...</option>
+<hr/>
+<select class="form-control" @onchange="CategoryChange">
+    <option value="">Select a category...</option>
 
-        @foreach(var category in categories)
-        {
-            <option value="@category.CategoryId">@category.CategoryName <i class="fa-solid fa-chevron-down"></i></option>
-        }
+    @foreach(var category in categories)
+    {
+        <option value="@category.CategoryId">@category.CategoryName <i class="fa-solid fa-chevron-down"></i></option>
     }
-
-    
 </select>
-    <hr/>
-
-    <table class="table table-hover">
-        <thead>
+<hr/>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Reference</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var product in temproducts)
+        {
             <tr>
-                <th>Name</th>
-                <th>Reference</th>
-                <th>Category</th>
-                <th>Quantity</th>
-                <th>Actions</th>
+                <td>@product.ProductName</td>
+                <td>@product.ProductId</td>
+                <td>@product.CategoryId</td>
+                <td>@product.TotalQuantity</td>
+                <td>
+                    <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
+                    <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-danger" href="product/remove/@product.ProductId"><i class="fa-solid fa-trash"></i> Remove</a>
+                    </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach(var product in temproducts)
-            {
-                <tr>
-                    <td>@product.ProductName</td>
-                    <td>@product.ProductId</td>
-                    <td>@product.CategoryId</td>
-                    <td>@product.TotalQuantity</td>
-                    <td>
-                        <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
-                        <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                        <a class="btn btn-danger" href="product/remove/@product.ProductId"><i class="fa-solid fa-trash"></i> Remove</a>
-                     </td>
-                </tr>
-            }
-        </tbody>
-    </table>@if(products == null)
+        }
+    </tbody>
+</table>
+    
+    @if(products == null)
     {
         <div class="text-center text-primary">
             <h5>

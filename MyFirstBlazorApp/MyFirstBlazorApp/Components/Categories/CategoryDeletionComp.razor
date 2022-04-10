@@ -1,0 +1,31 @@
+﻿@using Business
+@using Entities
+@inject NavigationManager NavManager
+
+<div class="alert alert-danger" role="alert">
+ <h5> <i class="fa-solid fa-triangle-exclamation fa-2xl"></i> Are you sure you want remove @oCategory.CategoryName category?</h5>
+                                                         <h6><strong>       Every product in this category will be removed.</strong></h6>
+    <hr/>
+  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <input type="button" class="btn btn-danger" value="Remove" @onclick="DeleteCategory" />
+  <a class="btn btn-outline-primary" href="categories">Cancel</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string IdCategory { get; set; }
+
+    Category oCategory = new Category();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oCategory = BsCategory.CategoryById(IdCategory);
+    }
+
+    private void DeleteCategory()
+    {
+        BsCategory.CategoryDeletion(oCategory);
+        NavManager.NavigateTo("categories");
+    }
+}

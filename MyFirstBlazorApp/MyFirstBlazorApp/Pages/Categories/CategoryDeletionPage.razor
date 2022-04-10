@@ -1,0 +1,14 @@
+﻿@page "/category/remove/{IdCategory}"
+
+<CategoryDeletionComp IdCategory="@IdCategory"/>
+
+@code {
+    [Parameter]
+    public string IdCategory{ get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        IdCategory = IdCategory;
+    }
+}
+ 
