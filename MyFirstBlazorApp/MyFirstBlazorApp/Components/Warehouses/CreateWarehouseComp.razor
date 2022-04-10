@@ -2,6 +2,8 @@
 @using Business
 @inject NavigationManager NavManager
 
+<h2>Warehouses Creation</h2>
+
 <EditForm Model="oWarehouse">
     <DataAnnotationsValidator/>
     <div class="form-group">
@@ -12,10 +14,10 @@
 
     <div class="form-group">
         <label>Address:</label>
-        <InputText @bind-Value="oWarehouse.WarehouseId" class="form-control" />
+        <InputText @bind-Value="oWarehouse.WarehouseAddress" class="form-control" />
         <ValidationMessage For="@(() => oWarehouse.WarehouseAddress)" class="text-danger"/>
     </div>
-    
+
     <div class="form-group">
         <br/><input type="button" value="Add Warehouse" @onclick="SaveWarehouse" class="form-control btn btn-success" />
     </div>
@@ -28,7 +30,7 @@
     private void SaveWarehouse()
     {
         BsWarehouse.WarehouseCreation(oWarehouse);
-        NavManager.NavigateTo("category/list");
+        NavManager.NavigateTo("warehouses");
     }
 
     private void HandleValidSubmit()

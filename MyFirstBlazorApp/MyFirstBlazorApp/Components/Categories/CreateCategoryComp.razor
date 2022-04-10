@@ -2,11 +2,13 @@
 @using Business
 @inject NavigationManager NavManager
 
+<h2>Category Creation</h2>
+
 <EditForm Model="oCategory">
     <DataAnnotationsValidator/>
     <div class="form-group">
         <label for="categoryId">Name:</label>
-        <InputText id="categoryId"@bind-Value="oCategory.CategoryName" class="form-control"/>
+        <InputText id="categoryId" @bind-Value="oCategory.CategoryName" class="form-control"/>
         <ValidationMessage For="@(() => oCategory.CategoryName)" class="text-danger"/>
     </div>
 

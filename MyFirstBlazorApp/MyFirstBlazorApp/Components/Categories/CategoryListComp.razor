@@ -2,27 +2,15 @@
 @using Business
 @inject NavigationManager NavManager
 
+<h2>Categories List</h2>
+
 <a class="btn btn-success" href="category/create"><i class="fa-solid fa-plus"></i> Create Category</a>
-
-<div class=" text-center list-group">
-    <a class="list-group-item list-group-item-action active" aria-current="true">
-        <h5><strong>Categories</strong></h5>
-    </a>
-    @foreach(var category in categories)
-    {
-            <a value="@category.CategoryId" class="list-group-item list-group-item-action"><strong>@category.CategoryName (@category.CategoryId)</strong>
-                <a class="btn btn-secondary btn-sm" href="category/update/@category.CategoryId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                <a class="btn btn-danger btn-sm" href="category/remove/@category.CategoryId"><i class="fa-solid fa-trash"></i> Remove</a>
-            </a>
-    }
-</div>
-
+<hr/>
 <table class="table table-hover">
-
     <thead>
         <tr>
             <th>Name</th>
-            <th>Reference</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -31,8 +19,8 @@
             <tr>
                 <td>@category.CategoryName (@category.CategoryId)</td>
                 <td>
-                    <a class="btn btn-secondary" href="product/update/@category.CategoryId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    <a class="btn btn-danger" href="product/remove/@category.CategoryId"><i class="fa-solid fa-trash"></i> Remove</a>
+                    <a class="btn btn-secondary" href="category/update/@category.CategoryId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-danger" href="category/remove/@category.CategoryId"><i class="fa-solid fa-trash"></i> Remove</a>
                 </td>
             </tr>
         }

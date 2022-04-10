@@ -1,0 +1,32 @@
+﻿@using Business
+@using Entities
+@inject NavigationManager NavManager
+
+<h2>Warehouse Removal</h2>
+
+<div class="alert alert-danger" role="alert">
+ <h5> <i class="fa-solid fa-triangle-exclamation fa-2xl"></i> Are you sure you want remove @oWarehouse.WarehouseName?</h5>
+    <hr/>
+  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <input type="button" class="btn btn-danger" value="Remove" @onclick="DeleteWarehouse" />
+  <a class="btn btn-outline-primary" href="warehouses">Cancel</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string IdWarehouse { get; set; }
+
+    Warehouse oWarehouse = new Warehouse();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oWarehouse = BsWarehouse.WarehouseById(IdWarehouse);
+    }
+
+    private void DeleteWarehouse()
+    {
+        BsWarehouse.WarehouseDeletion(oWarehouse);
+        NavManager.NavigateTo("warehouses");
+    }
+}

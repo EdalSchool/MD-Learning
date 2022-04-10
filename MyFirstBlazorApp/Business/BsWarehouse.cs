@@ -18,6 +18,14 @@ namespace Business
             }
         }
 
+        public static Warehouse WarehouseById(string Id)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                return db.Warehouses.ToList().LastOrDefault(w => w.WarehouseId == Id);
+            }
+        }
+
         public static void WarehouseCreation(Warehouse oWarehouse)
         {
             using (var db = new BlazorAppContext())
@@ -32,6 +40,15 @@ namespace Business
             using (var db = new BlazorAppContext())
             {
                 db.Warehouses.Update(oWarehouse);
+                db.SaveChanges();
+            }
+        }
+
+        public static void WarehouseDeletion(Warehouse oWarehouse)
+        {
+            using (var db = new BlazorAppContext())
+            {
+                db.Warehouses.Remove(oWarehouse);
                 db.SaveChanges();
             }
         }

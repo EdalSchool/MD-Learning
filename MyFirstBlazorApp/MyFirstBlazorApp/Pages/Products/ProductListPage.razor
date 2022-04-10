@@ -7,7 +7,7 @@
     <span class="fa-solid fa-industry" style="font-size:60px"></span>
     <h2>Manew Warehouses Inc.</h2>
     <h4>Where we store the best for YOU</h4>
-    <h5>Start managing your own storage and international sales system.</h5>
+    <h5>Start managing your own storage system.</h5>
 </div>
 
 <hr/>
@@ -15,7 +15,6 @@
 <a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> Create Product</a>
 <a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
 <a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Entry or an Exit</a> 
-
 
 <hr/>
 <div class="form-group">    
@@ -26,9 +25,13 @@
         {
             <option value="@category.CategoryId">@category.CategoryName</option>
         }
-    </select><a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Category List</a>
+    </select>
+    <a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Categories</a>
 </div>
 <hr/>
+
+<h2>Products List</h2>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -47,11 +50,11 @@
                 <td>@product.ProductId</td>
                 <td>@product.CategoryId</td>
                 <td>@product.TotalQuantity</td>
-                <td>
+                 <td>
                     <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
                     <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                     <a class="btn btn-danger" href="product/remove/@product.ProductId"><i class="fa-solid fa-trash"></i> Remove</a>
-                    </td>
+                </td>
             </tr>
         }
     </tbody>

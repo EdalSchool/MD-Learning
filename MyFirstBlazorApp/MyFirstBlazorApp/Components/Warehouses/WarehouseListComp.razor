@@ -1,7 +1,9 @@
 ﻿@using Entities
 @using Business
 
-<a class="btn btn-success" href="warehouse/create"><i class="fa-solid fa-plus"></i> Add Warehouse</a>
+<h2>Warehouses List</h2>
+
+<a class="btn btn-success" href="warehouse/create"><i class="fa-solid fa-plus"></i> Create Warehouse</a>
 
 @if (warehouses == null)
 {
@@ -18,6 +20,7 @@ else
             <tr>
                 <th>Warehouse</th>
                 <th>Address</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +29,10 @@ else
                 <tr>
                     <td>@warehouse.WarehouseName</td>
                     <td>@warehouse.WarehouseAddress</td>
-                    
-                    <a class="btn btn-secondary" href="category/update/@warehouse.WarehouseId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <td>
+                        <a class="btn btn-secondary" href="warehouse/update/@warehouse.WarehouseId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                        <a class="btn btn-danger" href="warehouse/remove/@warehouse.WarehouseId"><i class="fa-solid fa-trash"></i> Remove</a>
+                    </td>
                 </tr>
             }
         </tbody>
