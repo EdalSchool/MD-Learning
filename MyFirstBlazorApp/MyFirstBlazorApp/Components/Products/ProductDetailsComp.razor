@@ -1,31 +1,27 @@
 ﻿@using Entities
 @using Business
 
-<h2>Product Details</h2>
+<div class="modal-dialog modal-dialog-centered">
+    <div class="form-group">
+        <h5><strong>Name:</strong> @oProduct.ProductName</h5>
+        <hr/>
+        <h6><strong>Category:</strong> @oProduct.Category.CategoryName (@oProduct.CategoryId)</h6>
+        <hr/>
+        <h6><strong>Referen</strong> @oProduct.ProductId</h6>
+        <hr/>
+        <h6><strong>Quantity in Storage:</strong> @oProduct.TotalQuantity</h6>
 
-<div class="form-group">
-    <h5>Name: @oProduct.ProductName</h5>
-    <hr/>
-    <h6>Category: @oProduct.Category.CategoryName (@oProduct.CategoryId)</h6>
-    <hr/>
-    <h6>Reference: @oProduct.ProductId</h6>
-    <hr/>
-    <h6>Quantity in Storage: @oProduct.TotalQuantity</h6>
-
-    <a class="btn btn-primary" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+        <a class="btn btn-primary" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+    </div>
 </div>
-
 @code {
     [Parameter]
     public string IdProduct { get; set; }
 
     Product oProduct = new Product();
-    Category oCategory = new Category();
-    List<Category> categories = new List<Category>();
-
+    
     protected override async Task OnInitializedAsync()
     {
-        categories = BsCategory.CategoryList();
         oProduct = BsProduct.ProductById(IdProduct);
     }
 }
