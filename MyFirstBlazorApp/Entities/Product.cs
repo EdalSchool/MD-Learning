@@ -15,7 +15,7 @@ namespace Entities
         [Required]
         [StringLength(100)]
         public string ProductName { get; set; }
-        [StringLength(600)]
+        [StringLength(2000)]
         public string ProductDescription { get; set; }
         public int TotalQuantity { get; set; }
 
