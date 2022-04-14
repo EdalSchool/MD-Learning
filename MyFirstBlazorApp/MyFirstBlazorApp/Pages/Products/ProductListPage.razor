@@ -5,9 +5,9 @@
 
 <div class="text-center text-primary">
     <span class="fa-solid fa-industry" style="font-size:60px"></span>
-    <h2>Manew Warehouses Inc.</h2>
-    <h4>Where we store the best for YOU</h4>
-    <h5>Start managing your own storage system.</h5>
+    <h1>Manew Warehouses Inc.</h1>
+    <h3>Where we store the best for YOU</h3>
+    <h4>Start managing your own storage system</h4>
 </div>
 
 <hr/>
@@ -18,7 +18,7 @@
 <hr/>
 <div class="input-group mb-3">
     <select class="form-control" @onchange="CategoryChange">
-        <option value="">Select a category...</option>
+        <option value="">Come on!    Select a category...</option>
 
         @foreach (var category in categories)
         {
@@ -46,49 +46,30 @@
                 <td>@product.ProductId</td>
                 <td>@product.CategoryId</td>
                 <td>@product.TotalQuantity</td>
-                 <td>
+                <td>
                     <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
                     <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                     <a class="btn btn-danger" href="product/remove/@product.ProductId"><i class="fa-solid fa-trash"></i> Remove</a>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Launch demo modal
-                    </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            ...
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-@if (products == null)
+@if (!temproducts.Any()) 
 {
     <div class="text-center text-secondary">
-        <h1>
-
-            <i class="fa-solid fa-face-sad-tear fa-2xl"></i><br/>
-            @nullmessage
-        </h1>
+        <h2>
+            <i class="fa-regular fa-face-grin-beam-sweat fa-xl"></i>
+            <br/>
+            <strong>@nullmessage</strong>
+        </h2>
     </div>
 }
 
 @code {
     List<Product> products = new List<Product>();
+    List<Product> allproducts = new List<Product>();
     List<Product> temproducts = new List<Product>();
     List<Category> categories = new List<Category>();
     string nullmessage = "Sorry, there's nothing here";
@@ -98,6 +79,7 @@
         products = BsProduct.ProductList();
         categories = BsCategory.CategoryList();
         temproducts = products;
+        allproducts = temproducts;
     }
 
     private void CategoryChange(ChangeEventArgs e)
