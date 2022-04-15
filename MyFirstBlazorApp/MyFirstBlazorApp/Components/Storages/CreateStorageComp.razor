@@ -7,7 +7,7 @@
     <div class="form-group">
         <label>Warehouse:</label>
         <InputSelect @bind-Value="oStorage.WarehouseId" class="form-control">
-            <option value="">Select a warehouse...</option>
+            <option>Select a warehouse...</option>
             @foreach (var warehouse in warehouses)
             {
                 <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
@@ -32,8 +32,6 @@
 
 @code {
     Storage oStorage = new Storage();
-    Product oProduct = new Product();
-    Warehouse oWarehouse = new Warehouse();
 
     List<Warehouse> warehouses = new List<Warehouse>();
     List<Product> products = new List<Product>();
@@ -54,7 +52,7 @@
             oStorage.LastUpdate = DateTime.Now;
             BsStorage.StorageCreation(oStorage);
 
-            message = "Product successfully stored";
+            message = $"Product successfully stored";
         }
         else
         {

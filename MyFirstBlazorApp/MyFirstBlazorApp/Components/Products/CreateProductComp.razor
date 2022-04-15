@@ -6,21 +6,22 @@
 
 <EditForm Model="oProduct">
     <div class="form-group">
-        <label>Name:</label>
-        <InputText @bind-Value="oProduct.ProductName" class="form-control" />
+        @namemessage
+        <label for="formGroupExampleInput" >Name:</label>
+        <InputText @bind-Value="oProduct.ProductName" class="form-control" id="formGroupExampleInput" placeholder="Type the name of the new product" />
     </div>
     <div class="form-group">
-        <label>Reference:</label>
-        <InputText @bind-Value="oProduct.ProductId" class="form-control" />
+        <label  for="formGroupExampleInputR">Reference:</label>
+        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="formGroupExampleInputR" placeholder="Type the product reference" />
     </div>
     <div class="form-group">
-        <label>Description:</label>
-        <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" />
+        <label id="formGroupExampleInputD">Description:</label>
+        <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="formGroupExampleInputD" placeholder="Type the product description"/>
     </div>
     <div class="form-group">
         <label>Category:</label>
         <InputSelect @bind-Value="oProduct.CategoryId" class="form-control">
-            <option value="">Select of what category is the new product</option>
+            <option value="">Select of what category it's the new product</option>
             @foreach(var category in categories)
             {
                 <option value = "@category.CategoryId">@category.CategoryName</option>
@@ -33,6 +34,7 @@
 @code {
     Product oProduct = new Product();
     List<Category> categories = new List<Category>();
+    string namemessage;
 
     protected override async Task OnInitializedAsync()
     {
@@ -40,7 +42,12 @@
     }
 
     private void SaveProduct()
-    {
+    {   
+        if (oProduct.ProductName == null)
+        {
+            namemessage = "Mmmm... The name field is required";
+        }
+
         BsProduct.ProductCreation(oProduct);
         NavManager.NavigateTo("");
     }

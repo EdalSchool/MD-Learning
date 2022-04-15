@@ -20,7 +20,7 @@ namespace DataAccess
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=MyFirstBlazorAppDb; Trusted_Connection=True; MultipleActiveResultSets=true");
+                options.UseSqlServer(@"Server=c8xz1duey1.database.windows.net; Database=md-warehouse-project; User ID=mduser; Password=Kn#NeGh0l6zj^!u*CH; MultipleActiveResultSets=true");
             }
         }
 
@@ -28,24 +28,24 @@ namespace DataAccess
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Category>().HasData
-            (
-                new Category { CategoryId = "HCN", CategoryName = "Home Cleaning" },
-                new Category { CategoryId = "PNC", CategoryName = "Personal Care" },
-                new Category { CategoryId = "VDG", CategoryName = "Video Games" },
-                new Category { CategoryId = "EDU", CategoryName = "Education" },
-                new Category { CategoryId = "KTN", CategoryName = "Kitchen" },
-                new Category { CategoryId = "CTH", CategoryName = "Clothes" },
-                new Category { CategoryId = "HTH", CategoryName = "Health" },
-                new Category { CategoryId = "TYS", CategoryName = "Toys" }
-            );
+            //modelBuilder.Entity<Category>().HasData
+            //(
+            //    new Category { CategoryId = "HCN", CategoryName = "Home Cleaning" },
+            //    new Category { CategoryId = "PNC", CategoryName = "Personal Care" },
+            //    new Category { CategoryId = "VDG", CategoryName = "Video Games" },
+            //    new Category { CategoryId = "EDU", CategoryName = "Education" },
+            //    new Category { CategoryId = "KTN", CategoryName = "Kitchen" },
+            //    new Category { CategoryId = "CTH", CategoryName = "Clothes" },
+            //    new Category { CategoryId = "HTH", CategoryName = "Health" },
+            //    new Category { CategoryId = "TYS", CategoryName = "Toys" }
+            //);
 
-            modelBuilder.Entity<Warehouse>().HasData
-            (
-                new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "New York Warehouse", WarehouseAddress = "New York City, New York"},
-                new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "Kansas Warehouse", WarehouseAddress = "Missouri, Kansas" },
-                new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "Idaho Warehouse", WarehouseAddress = "Idaho Falls, Idaho " }
-            );
+            //modelBuilder.Entity<Warehouse>().HasData
+            //(
+            //    new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "New York Warehouse", WarehouseAddress = "New York City, New York"},
+            //    new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "Kansas Warehouse", WarehouseAddress = "Missouri, Kansas" },
+            //    new Warehouse { WarehouseId = Guid.NewGuid().ToString(), WarehouseName = "Idaho Warehouse", WarehouseAddress = "Idaho Falls, Idaho " }
+            //);
         }
     }
 }
