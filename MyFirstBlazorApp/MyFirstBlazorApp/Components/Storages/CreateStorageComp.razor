@@ -52,7 +52,7 @@
             oStorage.LastUpdate = DateTime.Now;
             BsStorage.StorageCreation(oStorage);
 
-            message = "Stored Product";
+            message = $"{oStorage.Product.ProductName} stored in {oStorage.Warehouse.WarehouseName}";
         }
         else
         {
