@@ -32,6 +32,8 @@
 
 @code {
     Storage oStorage = new Storage();
+    Product oProduct = new Product();
+    Warehouse oWarehouse = new Warehouse();
 
     List<Warehouse> warehouses = new List<Warehouse>();
     List<Product> products = new List<Product>();
@@ -52,7 +54,7 @@
             oStorage.LastUpdate = DateTime.Now;
             BsStorage.StorageCreation(oStorage);
 
-            message = $"{oStorage.Product.ProductName} stored in {oStorage.Warehouse.WarehouseName}";
+            message = "Product successfully stored";
         }
         else
         {

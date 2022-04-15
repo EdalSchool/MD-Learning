@@ -37,7 +37,7 @@ namespace Business
         {
             using (var db = new BlazorAppContext())
             {
-                return db.Storages.Any(s => s.StorageId == idStorage);
+                return db.Storages.Include(s => s.Warehouse).Include(s => s.Product).Any(s => s.StorageId == idStorage);
             }
         }
 
