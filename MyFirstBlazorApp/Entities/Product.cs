@@ -12,7 +12,7 @@ namespace Entities
         [Key]
         [StringLength(10)]
         public string ProductId { get; set; }
-        [Required]
+        [Required(ErrorMessage="asdasdfasdf")]
         [StringLength(100)]
         public string ProductName { get; set; }
         [StringLength(2000)]

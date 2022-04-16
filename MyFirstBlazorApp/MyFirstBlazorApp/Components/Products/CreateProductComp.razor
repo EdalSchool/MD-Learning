@@ -6,7 +6,7 @@
 
 <EditForm Model="oProduct">
     <div class="form-group">
-        @namemessage
+        <div class="text-danger">@namemessage</div><br/>
         <label for="formGroupExampleInput" >Name:</label>
         <InputText @bind-Value="oProduct.ProductName" class="form-control" id="formGroupExampleInput" placeholder="Type the name of the new product" />
     </div>
@@ -43,9 +43,10 @@
 
     private void SaveProduct()
     {   
-        if (oProduct.ProductName == null)
+        if(oProduct.ProductName == null)
         {
             namemessage = "Mmmm... The name field is required";
+            
         }
 
         BsProduct.ProductCreation(oProduct);
