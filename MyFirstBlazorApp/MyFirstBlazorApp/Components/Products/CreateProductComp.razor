@@ -4,15 +4,19 @@
 
 <h2>Product Creation</h2>
 
-<EditForm Model="oProduct">
+<EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
+    <DataAnnotationsValidator />
+
     <div class="form-group">
         <div class="text-danger">@namemessage</div><br/>
         <label for="formGroupExampleInput" >Name:</label>
         <InputText @bind-Value="oProduct.ProductName" class="form-control" id="formGroupExampleInput" placeholder="Type the name of the new product" />
+        <ValidationMessage For="() => oProduct.ProductName" />
     </div>
     <div class="form-group">
         <label  for="formGroupExampleInputR">Reference:</label>
         <InputText @bind-Value="oProduct.ProductId" class="form-control" id="formGroupExampleInputR" placeholder="Type the product reference" />
+        <ValidationMessage For="() => oProduct.ProductId" />
     </div>
     <div class="form-group">
         <label id="formGroupExampleInputD">Description:</label>
@@ -27,8 +31,10 @@
                 <option value = "@category.CategoryId">@category.CategoryName</option>
             }
         </InputSelect>
+        <ValidationMessage For="() => oProduct.CategoryId" />
     </div>
-    <input type="button" class="btn btn-success" value="Add Product" @onclick="SaveProduct"/>
+    <br/>
+    <input type="submit" class="btn btn-success" value="Add Product" />
 </EditForm>
 
 @code {
@@ -43,12 +49,6 @@
 
     private void SaveProduct()
     {   
-        if(oProduct.ProductName == null)
-        {
-            namemessage = "Mmmm... The name field is required";
-            
-        }
-
         BsProduct.ProductCreation(oProduct);
         NavManager.NavigateTo("");
     }

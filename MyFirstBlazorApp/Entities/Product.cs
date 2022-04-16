@@ -10,9 +10,10 @@ namespace Entities
     public class Product
     {
         [Key]
-        [StringLength(10)]
+        [Required(ErrorMessage = "Mmmm... The reference field is required")]
+        [StringLength(10, ErrorMessage ="Wait! The product reference must be less than 10 characters")]
         public string ProductId { get; set; }
-        [Required(ErrorMessage="asdasdfasdf")]
+        [Required(ErrorMessage="Hey! The name field is required")]
         [StringLength(100)]
         public string ProductName { get; set; }
         [StringLength(2000)]
@@ -20,6 +21,7 @@ namespace Entities
         public int TotalQuantity { get; set; }
 
         //Relationship with Category
+        [Required(ErrorMessage = "You have to select a categry!")]
         public string CategoryId { get; set; }
         public Category Category { get; set; }
 

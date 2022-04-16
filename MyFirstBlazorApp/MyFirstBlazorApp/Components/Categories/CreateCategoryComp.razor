@@ -4,22 +4,23 @@
 
 <h2>Category Creation</h2>
 
-<EditForm Model="oCategory">
+<EditForm Model="oCategory" OnValidSubmit=@SaveCategory>
     <DataAnnotationsValidator/>
+    
     <div class="form-group">
         <label for="categoryId">Name:</label>
         <InputText id="categoryId" @bind-Value="oCategory.CategoryName" class="form-control"/>
-        <ValidationMessage For="@(() => oCategory.CategoryName)" class="text-danger"/>
+        <ValidationMessage For="() => oCategory.CategoryName"/>
     </div>
 
     <div class="form-group">
         <label>Reference:</label>
         <InputText @bind-Value="oCategory.CategoryId" class="form-control" />
-        <ValidationMessage For="@(() => oCategory.CategoryId)" class="text-danger"/>
+        <ValidationMessage For="() => oCategory.CategoryId"/>
     </div>
     
     <div class="form-group">
-        <br/><input type="button" value="Add Category" @onclick="SaveCategory" class="form-control btn btn-success" />
+        <br/><input type="submit" value="Add Category" class="form-control btn btn-success" />
     </div>
 </EditForm>
 

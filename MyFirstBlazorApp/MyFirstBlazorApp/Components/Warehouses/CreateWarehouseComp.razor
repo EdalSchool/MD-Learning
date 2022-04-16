@@ -4,22 +4,23 @@
 
 <h2>Warehouses Creation</h2>
 
-<EditForm Model="oWarehouse">
+<EditForm Model="oWarehouse" OnValidSubmit=@SaveWarehouse>
     <DataAnnotationsValidator/>
+
     <div class="form-group">
         <label for="warehouseId">Name:</label>
         <InputText id="warehouseId"@bind-Value="oWarehouse.WarehouseName" class="form-control"/>
-        <ValidationMessage For="@(() => oWarehouse.WarehouseName)" class="text-danger"/>
+        <ValidationMessage For="() => oWarehouse.WarehouseName"/>
     </div>
 
     <div class="form-group">
         <label>Address:</label>
         <InputText @bind-Value="oWarehouse.WarehouseAddress" class="form-control" />
-        <ValidationMessage For="@(() => oWarehouse.WarehouseAddress)" class="text-danger"/>
+        <ValidationMessage For="() => oWarehouse.WarehouseAddress"/>
     </div>
 
     <div class="form-group">
-        <br/><input type="button" value="Add Warehouse" @onclick="SaveWarehouse" class="form-control btn btn-success" />
+        <br/><input type="submit" value="Add Warehouse" class="form-control btn btn-success" />
     </div>
 </EditForm>
 

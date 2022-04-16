@@ -14,10 +14,10 @@ namespace Entities
         [StringLength(70)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string WarehouseId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Hey! The name field is required")]
         [StringLength(100)]
         public string WarehouseName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "STOP! The address field is required")]
         [StringLength(100)]
         public string WarehouseAddress { get; set; }
 

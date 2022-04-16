@@ -20,6 +20,7 @@ namespace Entities
         public bool IsInput { get; set; }
 
         //Relationship with InOuts
+        [Required(ErrorMessage="Please, fill the warehouse and product information")]
         public string StorageId { get; set; }
         public Storage Storage { get; set; }
     }

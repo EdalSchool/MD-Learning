@@ -11,8 +11,9 @@ namespace Entities
     {
         [Key]
         [StringLength(50)]
+        [Required(ErrorMessage="Mmmm... The reference field is required")]
         public string CategoryId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Hey! The name field is required")]
         [StringLength(100)]
         public string CategoryName { get; set; }
 
