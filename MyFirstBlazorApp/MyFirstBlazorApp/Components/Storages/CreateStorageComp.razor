@@ -3,7 +3,9 @@
 
 <h2>Product Storage</h2>
 
-<EditForm Model="oStorage">
+<EditForm Model="oStorage" OnValidSubmit=@SaveStorage>
+    <DataAnnotationsValidator />
+    <ValidationSummary/>
     <div class="form-group">
         <label>Warehouse:</label>
         <InputSelect @bind-Value="oStorage.WarehouseId" class="form-control">
@@ -24,7 +26,8 @@
             }
         </InputSelect>
     </div>
-    <input type="button" class="btn btn-warning" value="Store Product" @onclick="SaveStorage" />
+    <br/>
+    <input type="submit" class="btn btn-primary" value="Store" />
 </EditForm>
 <div class="text-center h4">
     @message

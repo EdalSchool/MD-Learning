@@ -15,10 +15,8 @@
         <label>Address:</label>
         <InputText @bind-Value="oWarehouse.WarehouseAddress" class="form-control" />
     </div>
-
-    <div class="form-group">
-        <br/><input type="button" value="Update" @onclick="WarehouseUpdate" class="form-control btn btn-success" />
-    </div>
+    <br/>
+    <input type="button" value="Update" @onclick="WarehouseUpdate" class="btn btn-primary" />
 </EditForm>
 
 @code{

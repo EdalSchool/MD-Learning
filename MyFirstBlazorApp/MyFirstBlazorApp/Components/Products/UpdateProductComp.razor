@@ -14,9 +14,8 @@
         <label>Description:</label>
         <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" />
     </div>
-    
-    <input type="button" class="btn btn-success" value="Update Product" @onclick="UpdateProduct"/>
-    <a class="btn btn-primary" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+    <br/>
+    <input type="button" class="btn btn-primary" value="Update" @onclick="UpdateProduct"/>
 </EditForm>
 
 @code {
@@ -38,3 +37,4 @@
         NavManager.NavigateTo("");
     }
 }
+ 

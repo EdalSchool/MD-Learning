@@ -1,22 +1,22 @@
 ﻿@using Entities
 @using Business
-<EditForm Model="oInOut" OnValidSubmit="@SaveInOut">
-    <DataAnnotationsValidator />
-    <ValidationSummary/>
+
 <h2>Remember!</h2>
 <h4>To register an entry or exit of a product, you must first store it in its proper Warehouse</h4>
 
-<div class="form-group">
-    <select class="form-control" @onchange="ChangedWarehouse">
-        <option value="">Select a warehouse...</option>
-        @foreach (var warehouse in warehouses)
-        {
-            <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
-        }
-    </select>
-</div>
-<hr />
-
+<EditForm Model="oInOut" OnValidSubmit="@SaveInOut">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <select class="form-control" @onchange="ChangedWarehouse">
+            <option value="">Select a warehouse...</option>
+            @foreach (var warehouse in warehouses)
+            {
+                <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
+            }
+        </select>
+    </div>
+    <hr />
     <div class="form-group">
         <InputSelect class="form-control" @bind-Value="oInOut.StorageId">
             <option value="">Select a product...</option>
@@ -35,8 +35,9 @@
         <InputCheckbox class="form-check-input" type="check" @bind-Value="oInOut.IsInput" />
         <label>It's an input?</label>
     </div>
+
     <div>
-        <input class="btn btn-outline-success" type="submit" value="@buttonValue"       />
+        <input class="btn btn-outline-success" type="submit" value="@buttonValue" />
     </div>
 </EditForm>
 <div class="text-center h4">@message</div>

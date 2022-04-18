@@ -11,6 +11,7 @@ namespace Entities
     {
         [Key]
         [StringLength(50)]
+        [Required(ErrorMessage="Please, fill the warehouse and product info")]
         public string StorageId { get; set; }
         [Required]
         public DateTime LastUpdate { get; set; }
