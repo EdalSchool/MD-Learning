@@ -6,18 +6,18 @@
 
 <EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
     <DataAnnotationsValidator />
-
+    
     <div class="form-group">
-        <div class="text-danger">@namemessage</div><br/>
         <label for="formGroupExampleInput" >Name:</label>
         <InputText @bind-Value="oProduct.ProductName" class="form-control" id="formGroupExampleInput" placeholder="Type the name of the new product" />
         <ValidationMessage For="() => oProduct.ProductName" />
     </div>
     <div class="form-group">
         <label  for="formGroupExampleInputR">Reference:</label>
-        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="formGroupExampleInputR" placeholder="Type the product reference" />
+        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="formGroupExampleInputR" placeholder="Type the product reference. The Reference field cannot contain a  sign or numbers. If you type it just refresh the browser." />
         <ValidationMessage For="() => oProduct.ProductId" />
     </div>
+    <label class="text text-danger">@linemessage</label>
     <div class="form-group">
         <label id="formGroupExampleInputD">Description:</label>
         <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="formGroupExampleInputD" placeholder="Type the product description"/>
@@ -27,20 +27,20 @@
         <InputSelect @bind-Value="oProduct.CategoryId" class="form-control">
             <option value="">Select of what category it's the new product</option>
             @foreach(var category in categories)
-            {
+            {  
                 <option value = "@category.CategoryId">@category.CategoryName</option>
             }
         </InputSelect>
         <ValidationMessage For="() => oProduct.CategoryId" />
     </div>
     <br/>
-    <input type="submit" class="btn btn-primary" value="Add" />
+    <input type="submit" class="btn btn-success" value="Add" />
 </EditForm>
 
 @code {
     Product oProduct = new Product();
     List<Category> categories = new List<Category>();
-    string namemessage;
+    string linemessage = "The Reference field cannot contain a \"-\" sign or numbers. If you type it just refresh the browser.";
 
     protected override async Task OnInitializedAsync()
     {

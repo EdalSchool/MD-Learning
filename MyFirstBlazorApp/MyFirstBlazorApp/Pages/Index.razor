@@ -3,21 +3,28 @@
 @using Entities
 @using Business
 
-<div class="text-center text-primary">
-    <span class="fa-solid fa-industry" style="font-size:60px"></span>
-    <h1>Manew Warehouses Inc.</h1>
-    <h3>Where we store the best for YOU</h3>
+@*<div class="text-center text-primary">
+    <span class="fa-solid fa-clover" style="font-size:60px"></span>
+    <h1>Clover</h1>
+    <h3>Where YOU can get the best</h3>
 </div>
 
 <hr/>
-
-<a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> Create Product</a> 
+*@
+<a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> New Product</a> 
 <a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
 <a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Entry or an Exit</a> 
 <hr/>
 <div class="input-group mb-3">
-    <select class="form-select" @onchange="CategoryChange">
-        <option value="">Come on!    Select a category...</option>
+    <select class="form-select"  @onchange="CategoryChange">
+        @if (! categories.Any() )
+        {
+            <option> You have to create a category</option>
+        }
+        else
+        {
+            <option>Come on! Select a category...</option>
+        }
 
         @foreach (var category in categories)
         {
@@ -46,9 +53,9 @@
                 <td>@product.CategoryId</td>
                 <td>@product.TotalQuantity</td>
                 <td>
-                    <a class="btn btn-primary" href="product/@product.ProductId"><i class="fa-solid fa-eye"></i> Details</a>
-                    <a class="btn btn-secondary" href="product/update/@product.ProductId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    <a class="btn btn-danger" href="product/remove/@product.ProductId"><i class="fa-solid fa-trash"></i> Remove</a>
+                    <a class="btn btn-primary" href="product/@product.ProductId" data-bs-toggle="tooltip" data-bs-placement="top" title="View Product Details"><i class="fa-solid fa-eye"></i></a>
+                    <a class="btn btn-secondary" href="product/update/@product.ProductId"  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Product"><i class="fa-solid fa-pen"></i></a>
+                    <a class="btn btn-danger" href="product/remove/@product.ProductId" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Product"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }
@@ -59,26 +66,24 @@
 {
     <div class="text-center text-secondary">
         <h2>
-            <i class="fa-regular fa-face-grin-beam-sweat fa-xl"></i>
+            <i class="fa-regular fa-face-grin-beam fa-2xl"></i>
             <br/>
-            <strong>@nullmessage</strong>
+            @nullmessage <a class="btn btn-outline-success" href="product/create">create a product</a>
         </h2>
     </div>
 }
 
 @code {
     List<Product> products = new List<Product>();
-    List<Product> allproducts = new List<Product>();
     List<Product> temproducts = new List<Product>();
     List<Category> categories = new List<Category>();
-    string nullmessage = "Sorry, there's nothing here";
+    string nullmessage = "Don't worry, you just have to ";
 
     protected override async Task OnInitializedAsync()
     {
         products = BsProduct.ProductList();
         categories = BsCategory.CategoryList();
         temproducts = products;
-        allproducts = temproducts;
     }
 
     private void CategoryChange(ChangeEventArgs e)

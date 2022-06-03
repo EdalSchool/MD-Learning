@@ -1,8 +1,10 @@
 ﻿@using Entities
 @using Business
 
-<h2>Remember!</h2>
-<h4>To register an entry or exit of a product, you must first store it in its proper Warehouse</h4>
+<div class="text-success">
+    <h2>Remember!</h2>
+    <h4>To register an entry or exit of a product, you must first store it in its proper Warehouse</h4>
+</div>
 
 <EditForm Model="oInOut" OnValidSubmit="@SaveInOut">
     <DataAnnotationsValidator />
@@ -33,7 +35,7 @@
     </div>
     <div class="form-group h4">
         <InputCheckbox class="form-check-input" type="check" @bind-Value="oInOut.IsInput" />
-        <label>It's an input?</label>
+        <label>@labelValue</label>
     </div>
 
     <div>
@@ -50,6 +52,7 @@
     Storage oStorage = new Storage();
 
     string message;
+    string labelValue => oInOut.IsInput ? "It's a Purchase" : "It's a Sale";
     string buttonValue => oInOut.IsInput ? "Check In" : "Check Out";
 
     protected override async Task OnInitializedAsync()

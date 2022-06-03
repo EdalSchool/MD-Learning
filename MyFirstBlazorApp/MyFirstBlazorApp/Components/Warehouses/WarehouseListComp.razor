@@ -3,18 +3,8 @@
 
 <h2>Warehouses List</h2>
 
-<a class="btn btn-success" href="warehouse/create"><i class="fa-solid fa-plus"></i> Create Warehouse</a>
+<a class="btn btn-success" href="warehouse/create"><i class="fa-solid fa-plus"></i> New Warehouse</a>
 
-@if (warehouses == null)
-{
-    <div class="spinner-border text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-    <br/>
-    <p><em>Loading...</em></p>
-}
-else
-{
     <table class="display table table-hover">
         <thead>
             <tr>
@@ -30,14 +20,13 @@ else
                     <td>@warehouse.WarehouseName</td>
                     <td>@warehouse.WarehouseAddress</td>
                     <td>
-                        <a class="btn btn-secondary" href="warehouse/update/@warehouse.WarehouseId"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                        <a class="btn btn-danger" href="warehouse/remove/@warehouse.WarehouseId"><i class="fa-solid fa-trash"></i> Remove</a>
+                        <a class="btn btn-secondary" href="warehouse/update/@warehouse.WarehouseId" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Warehouse"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="btn btn-danger" href="warehouse/remove/@warehouse.WarehouseId" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Warehouse"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-}
 
 @code {
     [Parameter]
