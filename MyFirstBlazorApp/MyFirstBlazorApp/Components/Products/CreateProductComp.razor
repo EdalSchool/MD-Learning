@@ -14,13 +14,13 @@
     </div>
     <div class="form-group">
         <label  for="formGroupExampleInputR">Reference:</label>
-        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="formGroupExampleInputR" placeholder="Type the product reference. The Reference field cannot contain a  sign or numbers. If you type it just refresh the browser." />
+        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="formGroupExampleInputR" placeholder="Type the product reference" />
         <ValidationMessage For="() => oProduct.ProductId" />
     </div>
-    <label class="text text-danger">@linemessage</label>
+    <label class="text text-danger">@linemessage</label>         
     <div class="form-group">
         <label id="formGroupExampleInputD">Description:</label>
-        <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="formGroupExampleInputD" placeholder="Type the product description"/>
+        <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="formGroupExampleInputD" placeholder="Type the product description" />
     </div>
     <div class="form-group">
         <label>Category:</label>
