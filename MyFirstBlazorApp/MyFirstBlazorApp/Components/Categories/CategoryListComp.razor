@@ -2,7 +2,7 @@
 @using Business
 @inject NavigationManager NavManager
 
-<h2>Categories List</h2>
+<title>Lucky Luck | Categories</title>
 
 <a class="btn btn-success" href="category/create"><i class="fa-solid fa-plus"></i> New Category</a>
 <hr/>
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var category in categories)
+        @foreach (var category in categories)
         {
             <tr>
                 <td>@category.CategoryName (@category.CategoryId)</td>

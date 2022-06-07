@@ -3,14 +3,8 @@
 @using Entities
 @using Business
 
-@*<div class="text-center text-primary">
-    <span class="fa-solid fa-clover" style="font-size:60px"></span>
-    <h1>Clover</h1>
-    <h3>Where YOU can get the best</h3>
-</div>
+<title>Lucky Luck | Index</title>
 
-<hr/>
-*@
 <a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> New Product</a> 
 <a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
 <a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Entry or an Exit</a> 
@@ -40,12 +34,12 @@
             <th>Name</th>
             <th>Reference</th>
             <th>Category</th>
-            <th>Quantity</th>
+            <th>Quantity in Storage</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var product in temproducts)
+        @foreach (var product in products)
         {
             <tr>
                 <td>@product.ProductName</td>
@@ -62,7 +56,7 @@
     </tbody>
 </table>
 
-@if (!temproducts.Any()) 
+@if (!products.Any()) 
 {
     <div class="text-center text-secondary">
         <h2>
@@ -75,7 +69,6 @@
 
 @code {
     List<Product> products = new List<Product>();
-    List<Product> temproducts = new List<Product>();
     List<Category> categories = new List<Category>();
     string nullmessage = "Don't worry, you just have to ";
 
@@ -83,11 +76,10 @@
     {
         products = BsProduct.ProductList();
         categories = BsCategory.CategoryList();
-        temproducts = products;
     }
 
     private void CategoryChange(ChangeEventArgs e)
     {
-        temproducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
+        products = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
     }
 }
