@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,11 @@ namespace Entities
     public class Product
     {
         [Key]
-        [Required(ErrorMessage = "Mmmm... The reference field is required")]
-        [StringLength(15, ErrorMessage = "Wait! The product reference must be less than 15 characters")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ProductId { get; set; }
+        [Required(ErrorMessage = "Mmmm... The reference field is required")]
+        [StringLength(20, ErrorMessage = "Wait! The product reference must be less than 20 characters")]
+        public string Reference { get; set; }
         [Required(ErrorMessage="Hey! Don't forget to fill the name field")]
         [StringLength(100)]
         public string ProductName { get; set; }

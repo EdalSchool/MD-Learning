@@ -1,26 +1,28 @@
 ﻿@using Entities
 @using Business
+@using System.Linq
 @inject NavigationManager NavManager
 
 <title>Lucky Luck | Product Creation</title>
 
 <EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
     <DataAnnotationsValidator />
-    
+    <label class="text text-danger">@message</label>   
     <div class="form-group">
         <label for="NameInput" >Name:</label>
         <InputText @bind-Value="oProduct.ProductName" class="form-control" id="NameInput" placeholder="Type the name of the new product" />
         <ValidationMessage For="() => oProduct.ProductName" />
     </div>
     <div class="form-group">
-        <label  for="ReferenceInput">Reference:</label>
-        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="ReferenceInput" placeholder="Type the product reference" />
-        <ValidationMessage For="() => oProduct.ProductId" />
+        <label  for="ReferenceInput">Id:</label>
+        <InputText @bind-Value="oProduct.Reference" class="form-control" id="ReferenceInput" placeholder="Type the product reference" />
+        <ValidationMessage For="() => oProduct.Reference" />
     </div>
-    <label class="text text-danger">@linemessage</label>         
+          
     <div class="form-group">
         <label id="DescriptionInput">Description:</label>
         <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="DescriptionInput" placeholder="Type the product description" />
+        <ValidationMessage For="() => oProduct.ProductDescription" />
     </div>
     <div class="form-group">
         <label>Category:</label>
@@ -47,11 +49,13 @@
 
 @code {
     Product oProduct = new Product();
+    List<Product> products = new List<Product>();
     List<Category> categories = new List<Category>();
-    string linemessage = "The Reference field cannot contain a \"-\" sign or numbers. If you type it just refresh the browser.";
+    string message = "The Reference field cannot contain a \"-\" sign or numbers. If you type it just refresh the browser.";
 
     protected override async Task OnInitializedAsync()
     {
+        products = BsProduct.ProductList();
         categories = BsCategory.CategoryList();
     }
 

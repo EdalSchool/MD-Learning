@@ -12,7 +12,11 @@
         <InputText class="form-control" @bind-Value="oProduct.ProductName" />
         <ValidationMessage For="() => oProduct.ProductName" />
     </div>
-
+    <div class="form-group">
+        <label>Reference:</label>
+        <InputText class="form-control" @bind-Value="oProduct.ProductName" />
+        <ValidationMessage For="() => oProduct.Reference" />
+    </div>
     <div class="form-group">
         <label>Description:</label>
         <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" />
