@@ -4,6 +4,7 @@
 
 <title>Lucky Luck | @oWarehouse.WarehouseName Wareohuse Editon</title>
 
+<br />
 <EditForm Model="oWarehouse">
     <DataAnnotationsValidator/>
     <div class="form-group">
@@ -16,6 +17,7 @@
         <InputText @bind-Value="oWarehouse.WarehouseAddress" class="form-control" />
     </div>
     <br/>
+    <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
     <input type="button" value="Update" @onclick="WarehouseUpdate" class="btn btn-primary" />
 </EditForm>
 

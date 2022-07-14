@@ -3,7 +3,7 @@
 @using Entities
 @using Business
 
-<title>Lucky Luck | Index</title>
+<title>Lucky Luck | Home</title>
 
 <a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> New Product</a> 
 <a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
@@ -13,19 +13,26 @@
     <select class="form-select"  @onchange="CategoryChange">
         @if (! categories.Any() )
         {
-            <option> You have to create a category</option>
+            <option> You have just to...</option>
         }
         else
         {
             <option>Come on! Select a category...</option>
         }
-
+        
         @foreach (var category in categories)
         {
             <option value="@category.CategoryId">@category.CategoryName</option>
         }
     </select>
-    <a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Categories</a>
+    @if (! categories.Any())
+    {
+        <a class="btn btn-success" href="category/create">@*<i class="fa-solid fa-plus"></i>*@ create a category</a>
+    }
+    else
+    {
+        <a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Categories</a>
+    }
 </div>
 <hr/>
 <table class="table table-hover">
@@ -60,9 +67,14 @@
 {
     <div class="text-center text-secondary">
         <h2>
-            <i class="fa-regular fa-face-grin-beam fa-2xl"></i>
             <br/>
-            @nullmessage <a class="btn btn-outline-success" href="product/create">create a product</a>
+            <br/>
+            <br/>
+            <br/>
+            For now there's nothing here...
+            <br/>
+            <br/>
+            <a class="btn btn-outline-success" href="product/create">Create a Product</a>
         </h2>
     </div>
 }
@@ -70,7 +82,6 @@
 @code {
     List<Product> products = new List<Product>();
     List<Category> categories = new List<Category>();
-    string nullmessage = "Don't worry, you just have to ";
 
     protected override async Task OnInitializedAsync()
     {
@@ -83,3 +94,4 @@
         products = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
     }
 }
+    

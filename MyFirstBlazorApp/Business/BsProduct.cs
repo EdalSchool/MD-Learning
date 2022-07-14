@@ -27,12 +27,18 @@ namespace Business
             }
         }
 
-        public static void ProductCreation(Product oProduct)
+        public static BsResponse ProductCreation(Product oProduct)
         {
             using (var db = new BlazorAppContext())
             {
-                db.Products.Add(oProduct);
-                db.SaveChanges();
+                if (!db.Products.Any(x => x.ProductId == oProduct.ProductId))
+                {
+                    db.Products.Add(oProduct);
+                    db.SaveChanges();
+                    return new BsResponse { IsSuccessfull = true };
+                }
+                else
+                    return new BsResponse { IsSuccessfull = false, ErrorMessage = "Another product already has this Id" };
             }
         }
 

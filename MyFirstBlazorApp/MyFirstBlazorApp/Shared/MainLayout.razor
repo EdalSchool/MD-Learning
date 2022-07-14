@@ -1,27 +1,24 @@
 ﻿@inherits LayoutComponentBase
 
-@*<PageTitle>MyFirstBlazorApp</PageTitle>*@
-
 <div class="page">
-@*    <div class="sidebar">
-        <NavMenu />
-    </div>
-*@
+
     <main>
-        <div class=""></div>
         <div class="top-row">
             <div class="flex-fill">
-                <a class="text-success" href=""><i class="fa-solid fa-clover fa-2xl"></i></a> <strong>Lucky Luck</strong>
+                <a class="text-success" href=""><i class="fa-solid fa-clover fa-2xl"></i></a>
+                <strong>Lucky Luck</strong>
             </div>
             <div class="btn-group" role="group">
-                <a class="btn btn-success border border-white" href=""><i class="fa-solid fa-house"></i> Home</a>
-                <a class="btn btn-success border border-white" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Categories</a>
-                <a class="btn btn-success border border-white" href="warehouses"><i class="fa-solid fa-warehouse"></i> Branches</a>
+                <a class="btn btn-outline-success border border-light"><i class="fa-solid fa-house"></i> Home</a>
+                <a class="btn btn-outline-success border border-light"><i class="fa-solid fa-tags fa-flip-horizontal"></i> Categories</a>
+                <a class="btn btn-outline-success border border-light" style=""><i class="fa-solid fa-warehouse"></i> Branches</a>
             </div>
         </div>
 
         <article class="content px-4">
-            @Body  
+            @Body
         </article>
     </main>
 </div>
+
+

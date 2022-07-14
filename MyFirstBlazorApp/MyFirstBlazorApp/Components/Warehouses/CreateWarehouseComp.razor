@@ -4,6 +4,7 @@
 
 <title>Lucky Luck | Warehouse Creation</title>
 
+<br />
 <EditForm Model="oWarehouse" OnValidSubmit=@SaveWarehouse>
     <DataAnnotationsValidator/>
 
@@ -19,6 +20,7 @@
         <ValidationMessage For="() => oWarehouse.WarehouseAddress"/>
     </div>
     <br/>
+    <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
     <input type="submit" value="Add" class="btn btn-primary" />
 </EditForm>
 

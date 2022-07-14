@@ -5,9 +5,9 @@
 
 <title>Lucky Luck | Product Creation</title>
 
+<br />
 <EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
     <DataAnnotationsValidator />
-    <label class="text text-danger">@message</label>   
     <div class="form-group">
         <label for="NameInput" >Name:</label>
         <InputText @bind-Value="oProduct.ProductName" class="form-control" id="NameInput" placeholder="Type the name of the new product" />
@@ -15,8 +15,8 @@
     </div>
     <div class="form-group">
         <label  for="ReferenceInput">Id:</label>
-        <InputText @bind-Value="oProduct.Reference" class="form-control" id="ReferenceInput" placeholder="Type the product reference" />
-        <ValidationMessage For="() => oProduct.Reference" />
+        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="ReferenceInput" placeholder="Type the product reference" />
+        <ValidationMessage For="() => oProduct.ProductId" />
     </div>
           
     <div class="form-group">
@@ -43,15 +43,24 @@
         </InputSelect>
         <ValidationMessage For="() => oProduct.CategoryId" />
     </div>
-    <br/>
-    <input type="submit" class="btn btn-success" value="Add" />
+    <br />
+    @if (! categories.Any() )
+    {
+        <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+        <a class="btn btn-success" href="category/create"> Create a New Category</a>
+    }
+    else
+    {
+        <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+        <input type="submit" class="btn btn-success" value="Add Product" />
+    }
 </EditForm>
 
 @code {
     Product oProduct = new Product();
     List<Product> products = new List<Product>();
     List<Category> categories = new List<Category>();
-    string message = "The Reference field cannot contain a \"-\" sign or numbers. If you type it just refresh the browser.";
+    string message;
 
     protected override async Task OnInitializedAsync()
     {
@@ -61,7 +70,14 @@
 
     private void SaveProduct()
     {   
-        BsProduct.ProductCreation(oProduct);
-        NavManager.NavigateTo("");
+        var response = BsProduct.ProductCreation(oProduct);
+        if (response.IsSuccessfull)
+        {
+            NavManager.NavigateTo("");
+        }
+        else
+        {
+            message = response.ErrorMessage;
+        }
     }
 }

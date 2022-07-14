@@ -4,12 +4,14 @@
 
 <title>Lucky Luck | @oCategory.CategoryName Category Edition</title>
 
+<br />
 <EditForm Model="oCategory">
     <div class="form-group">
         <label>Name:</label>
         <InputText class="form-control" @bind-Value="oCategory.CategoryName" />
     </div>
-    <br/>
+    <br/>]
+    <a class="btn btn-outline-dark" href="categories"><i class="fa-solid fa-angles-left"></i> Back</a>
     <input type="button" class="btn btn-secondary" value="Update" @onclick="UpdateCategory" />
 </EditForm>
 

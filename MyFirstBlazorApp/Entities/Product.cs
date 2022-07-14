@@ -11,17 +11,18 @@ namespace Entities
     public class Product
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string ProductId { get; set; }
         [Required(ErrorMessage = "Mmmm... The reference field is required")]
         [StringLength(20, ErrorMessage = "Wait! The product reference must be less than 20 characters")]
-        public string Reference { get; set; }
+        public string ProductId { get; set; }
+
         [Required(ErrorMessage="Hey! Don't forget to fill the name field")]
         [StringLength(100)]
         public string ProductName { get; set; }
+
         [Required(ErrorMessage = "The new product needs a description")]
         [StringLength(2000)]
         public string ProductDescription { get; set; }
+
         public int TotalQuantity { get; set; }
 
         //Relationship with Category

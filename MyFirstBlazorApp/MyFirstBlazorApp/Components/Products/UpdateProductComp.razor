@@ -4,6 +4,7 @@
 
 <title>Lucky Luck | @oProduct.ProductName Product Edition</title>
 
+<br />
 <EditForm Model="oProduct" OnValidSubmit=@UpdateProduct>
     <DataAnnotationsValidator />
 
@@ -13,15 +14,11 @@
         <ValidationMessage For="() => oProduct.ProductName" />
     </div>
     <div class="form-group">
-        <label>Reference:</label>
-        <InputText class="form-control" @bind-Value="oProduct.ProductName" />
-        <ValidationMessage For="() => oProduct.Reference" />
-    </div>
-    <div class="form-group">
         <label>Description:</label>
         <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" />
     </div>
     <br/>
+    <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
     <input type="submit" class="btn btn-secondary" value="Update"/>
 </EditForm>
 
