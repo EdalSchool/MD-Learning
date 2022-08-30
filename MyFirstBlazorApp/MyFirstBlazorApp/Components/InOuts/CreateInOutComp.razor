@@ -1,13 +1,12 @@
 ﻿@using Entities
 @using Business
 
-<title>Lucky Luck | Register an Entry or an Exit</title>
+<title>MANEW | Register an Entry or an Exit</title>
 
-<div class="text-success">
-    <h2>Remember!</h2>
-    <h4>To register an entry or exit of a product, you must first store it in its proper Warehouse</h4>
+<div class="alert alert-primary bg-gradient alert-dismissible fade show" role="alert">
+  <p class="mb-0"><i class="text-warning fa-solid fa-triangle-exclamation fa-2xl"></i>  <strong>Remember!</strong> To register an entry or exit of a product, you must first <a href="storage/create">store it</a> in its proper Branch.</p>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-
 <EditForm Model="oInOut" OnValidSubmit="@SaveInOut">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -30,21 +29,22 @@
             }
         </InputSelect>
     </div>
-
+    <hr />
     <div class="form-group">
         <label>Write the quantity</label>
         <InputNumber class="form-control" @bind-Value="oInOut.Quantity" />
     </div>
+    <hr />
     <div class="form-group h4">
         <InputCheckbox class="form-check-input" type="check" @bind-Value="oInOut.IsInput" />
+        <br />
         <label>@labelValue</label>
     </div>
-
     <div>
         <input class="btn btn-outline-success" type="submit" value="@buttonValue" />
     </div>
 </EditForm>
-<div class="text-center h4">@message</div>
+<p class="text-center h4">@message</p>
 
 @code {
     List<Warehouse> warehouses = new List<Warehouse>();

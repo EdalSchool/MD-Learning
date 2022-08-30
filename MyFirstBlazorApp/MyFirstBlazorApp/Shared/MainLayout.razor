@@ -1,24 +1,110 @@
 ﻿@inherits LayoutComponentBase
+<head>
+    <link rel="icon" type="image/png" href="manewlogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+</head>
 
 <div class="page">
-
     <main>
-        <div class="top-row">
-            <div class="flex-fill">
-                <a class="text-success" href=""><i class="fa-solid fa-clover fa-2xl"></i></a>
-                <strong>Lucky Luck</strong>
+        <style>
+            .menubutton {
+                border-color: white;
+                color: #DC3545;
+            }
+
+                .menubutton:hover {
+                    color: white;
+                    background-image: linear-gradient(to right top, #ff0000, #f31514, #e7201f, #da2928, #cd302f, #cd3635, #cc3c3b, #cb4141, #d74848, #e35050, #ef5757, #fb5f5f);
+                }
+
+            .btn {
+                font-family: 'Baloo 2', cursive;
+            }
+
+            h1, h2, h3, h4, h5, h6, th, td, option, li, p {
+                font-family: 'Baloo 2', cursive;
+            }
+
+            .navicon {
+                padding-right: 2px;
+            }
+
+            .navitem {
+                color: #DC3545;
+            }
+
+                .navitem:active {
+                    color: #DC3545;
+                }
+
+                .navitem:hover {
+                    border-radius: 5px;
+                    background-image: linear-gradient(to right top, #ff0000, #f31514, #e7201f, #da2928, #cd302f, #cd3635, #cc3c3b, #cb4141, #d74848, #e35050, #ef5757, #fb5f5f);
+                    color: white;
+                }
+
+            .logo {
+                border-radius: 10%;
+                background-image: linear-gradient(to right top, #ff0000, #f31514, #e7201f, #da2928, #cd302f, #cd3635, #cc3c3b, #cb4141, #d74848, #e35050, #ef5757, #fb5f5f);
+            }
+
+            .logo2 {
+                color: black;
+                border-color: white
+            }
+        </style>
+
+        <nav class="navbar navbar-expand-lg bg-whitet">
+            <div class="container-fluid">
+                <div class="logo" style="padding: 10px;"><a class="" href=""><i class="text-white fa-solid fa-m fa-xl"></i></a></div>
+
+                <h1 class="logo2 navbar-toggler">Manew</h1>
+
+                <button class="menubutton navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class=" nav-link active" aria-current="page" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link disabled"></a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="categories"><i class=" navicon fa-solid fa-icons"></i> Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Branches</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
-            <div class="btn-group" role="group">
-                <a class="btn btn-outline-success border border-light"><i class="fa-solid fa-house"></i> Home</a>
-                <a class="btn btn-outline-success border border-light"><i class="fa-solid fa-tags fa-flip-horizontal"></i> Categories</a>
-                <a class="btn btn-outline-success border border-light" style=""><i class="fa-solid fa-warehouse"></i> Branches</a>
-            </div>
-        </div>
+        </nav>
 
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
-
-

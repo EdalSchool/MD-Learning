@@ -3,95 +3,198 @@
 @using Entities
 @using Business
 
-<title>Lucky Luck | Home</title>
+<title>MANEW | Index</title>
 
-<a class="btn btn-success" href="product/create"><i class="fa-solid fa-plus"></i> New Product</a> 
-<a class="btn btn-secondary" href="storage/create"><i class="fa-solid fa-box-open"></i> Store Product</a>
-<a class="btn btn-warning" href="inouts"><i class="fa-solid fa-right-left"></i> Register an Entry or an Exit</a> 
-<hr/>
-<div class="input-group mb-3">
-    <select class="form-select"  @onchange="CategoryChange">
-        @if (! categories.Any() )
-        {
-            <option> You have just to...</option>
-        }
-        else
-        {
-            <option>Come on! Select a category...</option>
-        }
-        
-        @foreach (var category in categories)
-        {
-            <option value="@category.CategoryId">@category.CategoryName</option>
-        }
-    </select>
-    @if (! categories.Any())
-    {
-        <a class="btn btn-success" href="category/create">@*<i class="fa-solid fa-plus"></i>*@ create a category</a>
+<style>
+    .btns {
+        border-radius: 30px;
     }
-    else
-    {
-        <a class="btn btn-danger" href="categories"><i class="fa-solid fa-tags" data-fa-transform="flip-h"></i> Categories</a>
-    }
-</div>
-<hr/>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Id</th>
-            <th>Category</th>
-            <th>Quantity in Storage</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in products)
-        {
-            <tr>
-                <td>@product.ProductName</td>
-                <td>@product.ProductId</td>
-                <td>@product.CategoryId</td>
-                <td>@product.TotalQuantity</td>
-                <td>
-                    <a class="btn btn-primary" href="product/@product.ProductId" data-bs-toggle="tooltip" data-bs-placement="top" title="View Product Details"><i class="fa-solid fa-eye"></i></a>
-                    <a class="btn btn-secondary" href="product/update/@product.ProductId"  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Product"><i class="fa-solid fa-pen"></i></a>
-                    <a class="btn btn-danger" href="product/remove/@product.ProductId" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Product"><i class="fa-solid fa-trash"></i></a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
-@if (!products.Any()) 
-{
-    <div class="text-center text-secondary">
-        <h2>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            For now there's nothing here...
-            <br/>
-            <br/>
-            <a class="btn btn-outline-success" href="product/create">Create a Product</a>
-        </h2>
+        .btns:hover {
+            color: #DC3545;
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+
+    .catbtns {
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+        .catbtns:hover {
+            color: #DC3545;
+        }
+
+    .more:hover {
+        color: #DC3545;
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <div class="row justify-content-center">
+            <div class="col-9">
+                <h4>Products</h4>
+            </div>
+            <div class="col-3">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="border border-danger btn btn-light active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">All Products</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="border border-danger btn btn-light" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">By Category</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <a class="btns btn btn-light border border-danger" href="product/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Product"><i class="text-danger fa-solid fa-plus"></i> ADD</a>
+        <a class="btns btn btn-light border border-danger" href="storage/create" data-bs-toggle="tooltip" data-bs-placement="top" title="Store Product"><i class="text-danger fa-solid fa-box-open"></i> STORE</a>
+        <a class="btns btn btn-light border border-danger" href="inouts" data-bs-toggle="tooltip" data-bs-placement="top" title="Register an Entry or an Exit"><i class="text-danger fa-solid fa-right-left"></i> INPUTS & OUTPUS</a>
+        <br />
+        <br />
+
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in products)
+                        {
+                            <tr class="trow">
+                                <td>@product.ProductName</td>
+                                <td>@product.ProductId</td>
+                                <td>@product.CategoryId</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="more fa-solid fa-ellipsis fa-xl"></i>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li><h6 class="dropdown-header">Actions</h6></li>
+                                            <li><a class="form-control dropdown-item" href="product/@product.ProductId"><i class="text-primary fa-solid fa-eye"></i> Details</a></li>
+                                            <li><a class="form-control dropdown-item" href="product/update/@product.ProductId"><i class="text-secondary fa-solid fa-pen"></i> Edit</a></li>
+                                            <li><a class="form-control dropdown-item" href="product/remove/@product.ProductId"><i class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
+
+
+
+                <div class="input-group mb-3">
+                    <select style="border-top-left-radius: 25px; border-bottom-left-radius: 25px;" class="form-select" @onchange="CategoryChange">
+                        @if (!categories.Any())
+                        {
+                            <option>You have to create a category</option>
+                        }
+                        else
+                        {
+                            <option>Select a Category</option>
+                        }
+
+                        @foreach (var category in categories)
+                        {
+                            <option value="@category.CategoryId">@category.CategoryName (@category.CategoryId)</option>
+                        }
+                    </select>
+                    @if (!categories.Any())
+                    {
+                        <a class="catbtns btn btn-light" href="category/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Category">ADD CATEGORY</a>
+                    }
+                    else
+                    {
+                        <a class="catbtns btn btn-light border border-danger" href="categories"><i class="text-danger fa-solid fa-icons fa-lg"></i> <i class="text-danger fa-solid fa-angle-right fa-sm"></i></a>
+                    }
+                </div>
+
+
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                            <th>Category</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in temproducts)
+                        {
+                            <tr class="trow">
+                                <td>@product.ProductName</td>
+                                <td>@product.ProductId</td>
+                                <td>@product.CategoryId</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="more fa-solid fa-ellipsis fa-xl"></i>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li><h6 class="dropdown-header">Actions</h6></li>
+                                            <li><a class="form-control dropdown-item" href="product/@product.ProductId"><i class="text-primary fa-solid fa-eye"></i> Details</a></li>
+                                            <li><a class="form-control dropdown-item" href="product/update/@product.ProductId"><i class="text-secondary fa-solid fa-pen"></i> Edit</a></li>
+                                            <li><a class="form-control dropdown-item" href="product/remove/@product.ProductId"><i class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @if (!products.Any())
+        {
+            <div class="text-center text-secondary">
+                <h2>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    for now there's nothing here...
+                    <br />
+                    <br />
+                    <a class="btn btn-outline-success" href="product/create">Create a Product</a>
+                </h2>
+            </div>
+        }
     </div>
-}
+
+</div>
+
 
 @code {
     List<Product> products = new List<Product>();
+    List<Product> temproducts = new List<Product>();
     List<Category> categories = new List<Category>();
+    public string IdProduct { get; set; }
+
+    Product product = new Product();
 
     protected override async Task OnInitializedAsync()
     {
         products = BsProduct.ProductList();
+        temproducts = products;
         categories = BsCategory.CategoryList();
     }
 
     private void CategoryChange(ChangeEventArgs e)
     {
-        products = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
+        temproducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
     }
 }
-    

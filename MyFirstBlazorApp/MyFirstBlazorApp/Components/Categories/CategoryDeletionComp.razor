@@ -4,13 +4,33 @@
 
 <title>Lucky Luck | @oCategory.CategoryName Category Removal</title>
 
-<div class="alert alert-danger" role="alert">
- <h5> <i class="fa-solid fa-triangle-exclamation fa-2xl"></i> Are you sure you want remove @oCategory.CategoryName category?</h5>
-                                                         <h6><strong>Every product in this category will be removed.</strong></h6>
-    <hr/>
-  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-  <input type="button" class="btn btn-danger" value="Remove" @onclick="DeleteCategory" />
-  <a class="btn btn-outline-primary" href="categories">Cancel</a>
+<h4 class="text-center"><a class="" href=""><i class="text-primary fa-solid fa-circle-left"></i></a> Delete @oCategory.CategoryName Category</h4>
+<div class="container text-center">
+    <div class="row row-cols-1 row-cols-lg-1 g-2 g-lg-3">
+    <div class="col">
+        <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="alert alert-light border-5 border-primary" role="alert">
+                <div class="row">
+                    <div class="col-2">
+                        <h3><i class="text-warning fa-solid fa-triangle-exclamation fa-2xl"></i></h3>
+                    </div>
+
+                    <div class="col-10">
+                        <h5>Are you sure you want remove this Category?</h5>
+                        <small>'@oCategory.CategoryName' and every product on it will be deleted forever</small>
+                    </div>
+                </div>
+                
+                <hr/>
+                <input type="button" class="btn btn-danger" value="Delete" @onclick="DeleteCategory" />
+                <a class="btn btn-outline-primary" href="categories">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
     </div>
 </div>
 

@@ -3,29 +3,29 @@
 @using System.Linq
 @inject NavigationManager NavManager
 
-<title>Lucky Luck | Product Creation</title>
+<title>MANEW | Product Creation</title>
 
-<br />
+<h4><a class="" href=""><i class="text-primary fa-solid fa-circle-left"></i></a> Create a Product</h4>
 <EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
     <DataAnnotationsValidator />
     <div class="form-group">
-        <label for="NameInput" >Name:</label>
+        <label for="NameInput" >Name</label>
         <InputText @bind-Value="oProduct.ProductName" class="form-control" id="NameInput" placeholder="Type the name of the new product" />
         <ValidationMessage For="() => oProduct.ProductName" />
     </div>
     <div class="form-group">
-        <label  for="ReferenceInput">Id:</label>
+        <label  for="ReferenceInput">Id</label>
         <InputText @bind-Value="oProduct.ProductId" class="form-control" id="ReferenceInput" placeholder="Type the product reference" />
         <ValidationMessage For="() => oProduct.ProductId" />
     </div>
           
     <div class="form-group">
-        <label id="DescriptionInput">Description:</label>
+        <label id="DescriptionInput">Description</label>
         <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="DescriptionInput" placeholder="Type the product description" />
         <ValidationMessage For="() => oProduct.ProductDescription" />
     </div>
     <div class="form-group">
-        <label>Category:</label>
+        <label>Category</label>
         <InputSelect @bind-Value="oProduct.CategoryId" class="form-control">
             
             @if (! categories.Any() )
@@ -38,7 +38,7 @@
         }
             @foreach(var category in categories)
             {  
-                <option value = "@category.CategoryId">@category.CategoryName</option>
+                <option value = "@category.CategoryId">@category.CategoryName (@category.CategoryId.ToUpper())</option>
             }
         </InputSelect>
         <ValidationMessage For="() => oProduct.CategoryId" />
@@ -46,12 +46,10 @@
     <br />
     @if (! categories.Any() )
     {
-        <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
         <a class="btn btn-success" href="category/create"> Create a New Category</a>
     }
     else
     {
-        <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
         <input type="submit" class="btn btn-success" value="Add Product" />
     }
 </EditForm>
@@ -73,7 +71,7 @@
         var response = BsProduct.ProductCreation(oProduct);
         if (response.IsSuccessfull)
         {
-            NavManager.NavigateTo("");
+            NavManager.NavigateTo("storage/create");
         }
         else
         {

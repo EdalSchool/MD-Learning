@@ -4,29 +4,56 @@
 
 <title>Lucky Luck | Categories</title>
 
-<a class="btn btn-success" href="category/create"><i class="fa-solid fa-plus"></i> New Category</a>
+
+
+<a class="btn btn-success" href="category/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Category"><i class="fa-solid fa-icons fa-lg"></i> <i class="fa-solid fa-plus fa-sm"></i></a>
 <hr/>
+<h4><a class="" href=""><i class="text-primary fa-solid fa-circle-left"></i></a> Categories</h4>
 <table class="table table-hover">
     <thead>
         <tr>
             <th>Name</th>
-            <th>Actions</th>
+            <th>ID</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var category in categories)
         {
             <tr>
-                <td>@category.CategoryName (@category.CategoryId)</td>
+                <td>@category.CategoryName</td>
+                <td>@category.CategoryId</td>
                 <td>
-                    <a class="btn btn-secondary" href="category/update/@category.CategoryId" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Category"><i class="fa-solid fa-pen"></i></a>
-                    <a class="btn btn-danger" href="category/remove/@category.CategoryId" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Cateogry"><i class="fa-solid fa-trash"></i></a>
+                    <div class="dropdown-center">
+                        <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-caret-down fa-xl"></i></div>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="form-control dropdown-item" href="category/update/@category.CategoryId"><i class="text-secondary fa-solid fa-pen"></i> Edit</a></li>
+                            <li><a class="form-control dropdown-item" href="category/remove/@category.CategoryId"><i class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a class="btn btn-success" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+
+@if (!categories.Any()) 
+{
+    <div class="text-center text-secondary">
+        <h2>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+             for now there's nothing here...
+            <br/>
+            <br/>
+            <a class="btn btn-outline-success" href="category/create">Create a Category</a>
+        </h2>
+    </div>
+}
 
 @code {
     Category oCategory = new Category();

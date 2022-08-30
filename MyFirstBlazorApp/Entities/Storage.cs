@@ -18,10 +18,12 @@ namespace Entities
         public int ProductQuantity { get; set; }
 
         //Relationship with Product
+        [Required(ErrorMessage = "You have to select a product!")]
         public string ProductId { get; set; }
         public Product Product { get; set; }
 
         //Relationship with Warehouse
+        [Required(ErrorMessage = "Select a Branch")]
         public string WarehouseId { get; set; }
         public Warehouse Warehouse { get; set; }
 

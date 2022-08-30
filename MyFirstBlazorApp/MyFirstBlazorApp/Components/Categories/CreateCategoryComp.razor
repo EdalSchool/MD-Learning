@@ -4,7 +4,6 @@
 
 <title>Lucky Luck | Category Creation</title>
 
-<br />
 <EditForm Model="oCategory" OnValidSubmit=@SaveCategory>
     <DataAnnotationsValidator/>
     
@@ -20,7 +19,7 @@
         <ValidationMessage For="() => oCategory.CategoryId"/>
     </div>
     <br/>
-    <a class="btn btn-outline-dark" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+    <a class="btn btn-outline-dark" href="categories"><i class="fa-solid fa-angles-left"></i> Back</a>
     <input type="submit" value="Add" class="btn btn-success" />
 </EditForm>
 

@@ -1,32 +1,50 @@
 ﻿@using Entities
 @using Business
 
-<title>Lucky Luck | Warehouses</title>
+<title>Lucky Luck | Branches</title>
 
-<a class="btn btn-success" href="warehouse/create"><i class="fa-solid fa-plus"></i> New Warehouse</a>
-
-    <table class="display table table-hover">
-        <thead>
+<a class="btn btn-success" href="warehouse/create"><i class="fa-solid fa-plus"></i> New Branch</a>
+<hr />
+<table class="display table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var warehouse in warehouses)
+        {
             <tr>
-                <th>Warehouse</th>
-                <th>Address</th>
-                <th>Actions</th>
+                <td>@warehouse.WarehouseName</td>
+                <td>@warehouse.WarehouseAddress</td>
+                <td>
+                    <a class="btn btn-secondary" href="warehouse/update/@warehouse.WarehouseId" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Warehouse"><i class="fa-solid fa-pen"></i></a>
+                    <a class="btn btn-danger" href="warehouse/remove/@warehouse.WarehouseId" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Warehouse"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach(var warehouse in warehouses)
-            {
-                <tr>
-                    <td>@warehouse.WarehouseName</td>
-                    <td>@warehouse.WarehouseAddress</td>
-                    <td>
-                        <a class="btn btn-secondary" href="warehouse/update/@warehouse.WarehouseId" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Warehouse"><i class="fa-solid fa-pen"></i></a>
-                        <a class="btn btn-danger" href="warehouse/remove/@warehouse.WarehouseId" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Warehouse"><i class="fa-solid fa-trash"></i></a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-success" href=""><i class="fa-solid fa-angles-left"></i> Back</a>
+
+@if (!warehouses.Any())
+{
+    <div class="text-center text-secondary">
+        <h2>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            for now there's nothing here...
+            <br/>
+            <br/>
+            <a class="btn btn-outline-success" href="warehouse/create">Create a Branch</a>
+        </h2>
+    </div>
+}
 
 @code {
     [Parameter]

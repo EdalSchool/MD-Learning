@@ -2,16 +2,33 @@
 @using Entities
 @inject NavigationManager NavManager
 
-<title>Lucky Luck | @oProduct.ProductName Product Removal</title>
+<title>MANEW | @oProduct.ProductName Product Removal</title>
 
-<div class="alert alert-danger" role="alert">
-    <h5> <i class="fa-solid fa-triangle-exclamation fa-2xl"></i> Are you sure you want remove the @oProduct.ProductName?</h5>
-    <hr/>
-    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-    <input type="button" class="btn btn-danger" value="Remove" @onclick="DeleteProduct" />
-    <a class="btn btn-outline-primary" href="">Cancel</a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="alert alert-light border-5 border-success" role="alert">
+                <div class="row">
+                    <div class="col-2">
+                        <h3><i class="text-warning fa-solid fa-triangle-exclamation fa-2xl"></i></h3>
+                    </div>
+
+                    <div class="col-10">
+                        <h5>Are you sure you want remove this Product?</h5>
+                        <small>'@oProduct.ProductName' will be deleted forever</small>
+                    </div>
+                </div>
+                
+                <hr/>
+                <input type="button" class="btn btn-danger" value="Delete" @onclick="DeleteProduct" />
+                <a class="btn btn-outline-primary" href="">Cancel</a>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
 
 @code {
     [Parameter]
