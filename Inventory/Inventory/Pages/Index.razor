@@ -1,0 +1,215 @@
+﻿@page "/"
+
+@using Entities
+@using Business
+
+<title>Manew | Home</title>
+
+
+<style>
+    svg.allproducts {
+        transform: rotate(180deg);
+    }
+
+    .allpbtn {
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .bycbtn {
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+</style>
+
+<div class="row">
+    <div class="d-flex justify-content-between">
+        <h4>Products</h4>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="allpbtn active text-end btn btn-sm btn-outline-danger" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                    All Products
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="bycbtn text-end btn btn-sm btn-outline-danger" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                    by Category
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<a class="btns btn btn-sm btn-light border border-danger" href="product/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Product"><i class="text-danger fa-solid fa-plus"></i> NEW</a>
+<a class="btns btn btn-sm btn-light border border-danger" href="storage/create" data-bs-toggle="tooltip" data-bs-placement="top" title="Store Product"><i class="text-danger fa-solid fa-box-open"></i> STORE IN</a>
+<a class="btns btn btn-sm btn-light border border-danger" href="inouts" data-bs-toggle="tooltip" data-bs-placement="top" title="Register an Entry or an Exit"><i class="text-danger fa-solid fa-right-left"></i> IN & OUTS</a>
+<br />
+<br />
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+        <div class="container">
+            <div class="row-cols-1">
+                <EditForm Model="search">
+                    <div class="form-group input-group mb-3">
+                        <input type="search" style="border-bottom-left-radius: 10px; border-top-left-radius: 10px;" @bind-value="search" class="form-control" placeholder="Search Products..." />
+                        <button style="border-bottom-right-radius: 10px; border-top-right-radius: 10px;" class="btn btn-danger" type="submit" id="button-addon1">
+                            <i style="visibility: hidden;">MD</i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg><i style="visibility: hidden;">MD</i>
+                        </button>
+                    </div>
+                </EditForm>
+                <br />
+                <table class="table table-borderless table-hover table-rounded bg-light">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>ID</th>
+                            <th>CATEGORY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in products)
+                        {
+                            if (product.ProductName.ToLower().Contains(search.ToLower()))
+                            {
+                                <tr style="border-radius: 10px;" class="">
+                                    <td>@product.ProductName</td>
+                                    <td>@product.ProductId</td>
+                                    <td>@product.CategoryId</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i style="padding: 2px;" class="more fa-solid fa-ellipsis fa-xl"></i>
+                                            </div>
+                                            <ul class="dropdown-menu">
+                                                <li><h6 class="dropdown-header">Actions</h6></li>
+                                                <li><a class="form-control dropdown-item" href="product/@product.ProductId"><i style="padding-right: 7px;" class="fa-solid fa-eye text-danger"></i> View</a></li>
+                                                <li><a class="form-control dropdown-item" href="product/update/@product.ProductId"><i style="padding-right: 7px;" class="fa-solid fa-pencil text-danger"></i> Edit</a></li>
+                                                <li><a class="form-control dropdown-item text-danger" href="product/remove/@product.ProductId"><i style="padding-right: 7px;" class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @if (!products.Any())
+        {
+            <div class="text-center">
+                <br />
+                <br />
+                <i class="text-danger fa-regular fa-face-smile fa-rotate-180 fa-2xl"></i>
+                <br /><br />
+                <h3 style="color: #DC3545;">nothing to see here...</h3>
+                <br />
+                <a style="border-radius: 10px;" class="btn btn-sm btn-light border border-danger" href="product/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Product">Create a Product</a>
+            </div>
+        }
+    </div>
+    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+        <div class="container">
+            <div class="row row-cols-1 g-2 g-lg-3">
+                <div class="input-group mb-3">
+                    <select style="border-radius: 10px;" class="form-select" @onchange="CategoryChange">
+                        @if (!categories.Any())
+                        {
+                            <option>You have to create a category</option>
+                        }
+                        else
+                        {
+                            <option>Select...</option>
+                        }
+
+                        @foreach (var category in categories)
+                        {
+                            if (category.CategoryName == "afgsdasdf")
+                            { }
+                            else
+                            {
+                                <option value="@category.CategoryId">@category.CategoryName (@category.CategoryId) Products</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <table class="table table-borderless table-hover table-rounded bg-light">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in temproducts)
+                        {
+                            if (product.ProductName.Contains(search))
+                            {
+                                <tr style="border-radius: 10px;" class="">
+                                    <td>@product.ProductName</td>
+                                    <td>@product.ProductId</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i style="padding: 2px;" class="more fa-solid fa-ellipsis fa-xl"></i>
+                                            </div>
+                                            <ul class="dropdown-menu">
+                                                <li><h6 class="dropdown-header">Actions</h6></li>
+                                                <li><a class="form-control dropdown-item" href="product/@product.ProductId"><i style="padding-right: 7px;" class="text-primary fa-solid fa-eye text-danger"></i> View</a></li>
+                                                <li><a class="form-control dropdown-item" href="product/update/@product.ProductId"><i style="padding-right: 7px;" class="text-secondary fa-solid fa-pencil text-danger"></i> Edit</a></li>
+                                                <li><a class="form-control dropdown-item text-danger" href="product/remove/@product.ProductId"><i style="padding-right: 7px;" class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @if (!products.Any())
+        {
+            <div class="text-center">
+                <br />
+                <br />
+                <i class="text-danger fa-regular fa-face-smile fa-rotate-180 fa-2xl"></i>
+                <br /><br />
+                <h3 style="color: #DC3545;">nothing to see here...</h3>
+                <br />
+                <a style="border-radius: 10px;" class="btn btn-sm btn-light border border-danger" href="product/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Product">Create a Product</a>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+@code {
+    string search = "";
+
+    List<Product> products = new List<Product>();
+    List<Product> temproducts = new List<Product>();
+    List<Category> categories = new List<Category>();
+
+    Product product = new Product();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = BsProduct.ProductList();
+        temproducts = products;
+        categories = BsCategory.CategoryList();
+    }
+
+    private void CategoryChange(ChangeEventArgs e)
+    {
+        temproducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
+    }
+}

@@ -16,11 +16,10 @@ namespace Entities
         public DateTime InOutDate { get; set; }
         [Required]
         public int Quantity { get; set; }
-        [Required]
         public bool IsInput { get; set; }
 
         //Relationship with InOuts
-        [Required(ErrorMessage="Please, fill the warehouse and product information")]
+        [Required(ErrorMessage="Please, fill the warehouse and product info")]
         public string StorageId { get; set; }
         public Storage Storage { get; set; }
     }

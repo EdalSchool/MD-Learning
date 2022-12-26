@@ -1,0 +1,161 @@
+﻿@using Entities
+@using Business
+
+<title>Manew | Search</title>
+
+<div class="container">
+    <div class="row-cols-1">
+        <EditForm Model="search">
+            <div class="form-group input-group mb-3">
+                <InputText style="border-bottom-left-radius: 10px; border-top-left-radius: 10px;" @bind-Value="search" class="form-control" placeholder="Search..." />
+                <button style="border-bottom-right-radius: 10px; border-top-right-radius: 10px;" class="sbtn btn btn-danger text-danger" type="submit" id="button-addon1">
+                    <i style="visibility: hidden;">MD</i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-white bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                    </svg><i style="visibility: hidden;">MD</i>
+                </button>
+            </div>
+        </EditForm>
+        <br />
+        <h4>Products</h4>
+
+        <div class="list-group">
+            @foreach (var product in products)
+            {
+                <a href="product/@product.ProductId" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex justify-content-evenly">
+                        <h6>@product.ProductName</h6>
+                        <h6><strong>ID:</strong> @product.ProductId</h6>
+                        <h6><strong>Category ID:</strong> @product.CategoryId</h6>
+                    </div>
+                </a>
+            }
+
+        </div>
+
+        @*<table class="table table-borderless table-hover table-rounded bg-light">
+            <thead>
+            <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var product in products)
+            {
+            if (product.ProductName.ToLower().Contains(search.ToLower()))
+            {
+            <tr style="border-radius: 10px;" class="">
+            <td>@product.ProductName</td>
+            <td>@product.ProductId</td>
+            <td>@product.CategoryId</td>
+            <td>
+            <div class="dropdown">
+            <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i style="padding: 2px;" class="more fa-solid fa-ellipsis fa-xl"></i>
+            </div>
+            <ul class="dropdown-menu">
+            <li><h6 class="dropdown-header">Actions</h6></li>
+            <li><a class="form-control dropdown-item" href="product/@product.ProductId"><i style="padding-right: 7px;" class="fa-solid fa-eye text-danger"></i> View</a></li>
+            <li><a class="form-control dropdown-item" href="product/update/@product.ProductId"><i style="padding-right: 7px;" class="fa-solid fa-pencil text-danger"></i> Edit</a></li>
+            <li><a class="form-control dropdown-item text-danger" href="product/remove/@product.ProductId"><i style="padding-right: 7px;" class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+            </ul>
+            </div>
+            </td>
+            </tr>
+            }
+            }
+            </tbody>
+            </table>*@
+        <hr />
+        <h4>Categories</h4>
+        <table class="table table-borderless table-hover table-rounded bg-light">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in categories)
+                {
+                    if (category.CategoryName == "afgsdasdf")
+                    { }
+                    else
+                    {
+                        if (category.CategoryName.ToLower().Contains(search.ToLower()))
+                        {
+                            <tr style="border-radius: 10px;">
+                                <td>@category.CategoryName</td>
+                                <td>@category.CategoryId</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i style="padding: 2px;" class="more fa-solid fa-ellipsis fa-xl"></i>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li><h6 class="dropdown-header">Actions</h6></li>
+                                            <li><a class="form-control dropdown-item" href="category/update/@category.CategoryId"><i style="padding-right: 7px;" class="text-secondary fa-solid fa-pen"></i> Edit</a></li>
+                                            <li><a class="form-control dropdown-item text-danger" href="category/remove/@category.CategoryId"><i style="padding-right: 7px;" class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+        <hr />
+        <h4>Warehouse</h4>
+        <table class="table table-borderless table-hover table-rounded bg-light">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var warehouse in warehouses)
+                {
+                    if (warehouse.WarehouseName.ToLower().Contains(search.ToLower()))
+                    {
+                        <tr style="border-radius: 10px;">
+                            <td>@warehouse.WarehouseName</td>
+                            <td>@warehouse.WarehouseAddress</td>
+                            <td>
+                                <div class="dropdown">
+                                    <div type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i style="padding: 2px;" class="more fa-solid fa-ellipsis fa-xl"></i>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><h6 class="dropdown-header">Actions</h6></li>
+                                        <li><a class="form-control dropdown-item" href="warehouse/update/@warehouse.WarehouseId"><i style="padding-right: 7px;" class="text-secondary fa-solid fa-pen"></i> Edit</a></li>
+                                        <li><a class="form-control dropdown-item text-danger" href="warehouse/remove/@warehouse.WarehouseId"><i style="padding-right: 7px;" class="text-danger fa-solid fa-trash-can"></i> Delete</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    string search = "";
+
+    List<Product> products = new List<Product>();
+    List<Category> categories = new List<Category>();
+    List<Warehouse> warehouses = new List<Warehouse>();
+
+    Product product = new Product();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = BsProduct.ProductList();
+        categories = BsCategory.CategoryList();
+        warehouses = BsWarehouse.WarehouseList();
+    }
+}

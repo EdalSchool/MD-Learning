@@ -16,14 +16,10 @@ namespace Entities
         public Guid FatherId { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Profession { get; set; }
+        public string Job { get; set; }
 
         //Relationship with Student
         public Guid StudentId { get; set; }
         public Student Student { get; set; }
-
-        //Relationship with Mother
-        public Guid MotherId { get; set; }
-        public Mother Mother { get; set; }
     }
 }

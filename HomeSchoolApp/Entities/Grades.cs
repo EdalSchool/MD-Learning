@@ -12,9 +12,9 @@ namespace Entities
     {
         [Key]
         [StringLength(50)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid GradeId { get; set; }
         public string Name { get; set; }
+        public string NameId { get; set; }
         public string LastYear { get; set; }
         public ICollection<Student> Students { get; set; }
     }

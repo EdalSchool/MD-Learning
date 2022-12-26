@@ -23,7 +23,7 @@ namespace Entities
         public Product Product { get; set; }
 
         //Relationship with Warehouse
-        [Required(ErrorMessage = "Select a Branch")]
+        [Required(ErrorMessage = "Select a Warehouse")]
         public string WarehouseId { get; set; }
         public Warehouse Warehouse { get; set; }
 

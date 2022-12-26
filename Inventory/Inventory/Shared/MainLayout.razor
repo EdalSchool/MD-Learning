@@ -1,0 +1,226 @@
+﻿@using Entities
+@using Business
+@using System.Linq
+@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+</head>
+
+<div class="page">
+    <main>
+        <style>
+            .hidden {
+                display: none;
+            }
+
+            table {
+                background-color: #F8F9FA;
+            }
+
+                table.table-rounded {
+                    border-spacing: 0;
+                    border-collapse: separate;
+                    border-radius: 20px;
+                    border: solid 1px;
+                    border-color: white;
+                }
+
+            .btns {
+                border-radius: 15px;
+            }
+
+                .btns:hover {
+                    color: #DC3545;
+                }
+
+            .more:hover {
+                color: white;
+                border-radius: 25%;
+                background-color: #DC3545;
+            }
+
+            .morev:hover {
+                color: #DC3545;
+            }
+
+            .btn {
+                font-family: 'Baloo 2', cursive;
+            }
+
+            h1, h2, h3, h4, h5, h6, th, td, option, li, p {
+                font-family: 'Baloo 2', cursive;
+            }
+
+            .navicon {
+                padding-right: 2px;
+            }
+
+            .navnew {
+                color: #DC3545;
+                border-color: white;
+            }
+
+                .navnew:hover {
+                    color: white;
+                    border-color: white;
+                }
+
+            .navitem {
+                padding: 3px;
+                color: #DC3545;
+                border: solid;
+                background-color: white;
+                border-radius: 10px;
+                border-color: white;
+            }
+
+                .navitem:active {
+                    color: #DC3545;
+                }
+
+                .navitem:hover {
+                    color: white;
+                    border: solid;
+                    background-color: #DC3545;
+                    border-radius: 10px;
+                    border-color: #DC3545;
+                }
+
+            .logo {
+                border-radius: 10px;
+                background-color: #DC3545;
+            }
+
+            .logo2 {
+                color: black;
+                border-color: white
+            }
+
+            .savebtn {
+                border-radius: 18px;
+                border-color: #DC3545;
+            }
+
+                .savebtn:hover {
+                    border-color: #DC3545;
+                    color: #2A9061;
+                }
+
+            .cancelbtn {
+                border-radius: 18px;
+                border-color: #0D6EFD;
+            }
+
+                .cancelbtn:hover {
+                    border-color: #0D6EFD;
+                    color: #DC3545;
+                }
+
+            .search {
+                border-color: #D7DEE4;
+                color: black;
+            }
+
+                .search:hover {
+                    border-color: #DC3545;
+                    color: #DC3545;
+                }
+        </style>
+
+        <nav class="navbar navbar-expand-lg bg-white">
+            <div class="container-fluid">
+                <div style="border-color: white;" class="navbar-toggler" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <button style="border-color: white;" class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class="navbutton fa-solid fa-bars fa-xl text-danger"></i>
+                    </button>
+                </div>
+
+                <div class="logo" style="padding: 10px;"><a href=""><i class="text-white fa-solid fa-m fa-xl"></i></a></div>
+
+                <div style="border-color: white;" class="navbar-toggler">
+                    <AuthorizeView>
+                        <Authorized>
+                            <div class="btn-group dropstart">
+                                <button class="navitem nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-thing"><a class="dropdown-item btn btn-outline-light text-dark" href="Identity/Account/Manage"><i class="navicon fa-solid fa-address-card text-danger"></i> Profile</a></li>
+                                    <li class="dropdown-thing">
+                                        <div class="" method="post" action="Identity/Account/LogOut">
+                                            <button type="submit" class="dropdown-item"><i class="navicon fa-solid fa-right-from-bracket text-danger"></i> Sign Out</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </Authorized>
+                        <NotAuthorized>
+                            <ul class="navbar-nav d-flex">
+                                <li class="nav-item">
+                                    <a style="font-family: 'Staatliches', cursive;" id="navi" class="navitem nav-link" aria-current="page" href="Identity/Account/Register"><i class="navicon fa-solid fa-user-plus"></i> Sign Up</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a style="font-family: 'Staatliches', cursive;" id="navi" class="navitem nav-link" href="Identity/Account/Login" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Log In"><i class="navicon fa-solid fa-right-to-bracket"></i> Sign In</a>
+                                </li>
+                            </ul>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <div style="margin-left: auto; margin-right: auto;" class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav d-flex">
+                            <li class="nav-item">
+                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <LoginDisplay />
+                </div>
+            </div>
+        </nav>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Manew</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

@@ -1,4 +1,9 @@
-﻿@inherits LayoutComponentBase
+﻿@using Entities
+@using Business
+@using System.Linq
+@inject NavigationManager NavManager
+
+@inherits LayoutComponentBase
 <head>
     <link rel="icon" type="image/png" href="manewlogo.png">
 
@@ -16,15 +21,39 @@
 <div class="page">
     <main>
         <style>
-            .menubutton {
-                border-color: white;
-                color: #DC3545;
+            .hidden {
+                display: none;
             }
 
-                .menubutton:hover {
-                    color: white;
-                    background-image: linear-gradient(to right top, #ff0000, #f31514, #e7201f, #da2928, #cd302f, #cd3635, #cc3c3b, #cb4141, #d74848, #e35050, #ef5757, #fb5f5f);
+            table {
+                background-color: #F8F9FA;
+            }
+
+                table.table-rounded {
+                    border-spacing: 0;
+                    border-collapse: separate;
+                    border-radius: 20px;
+                    border: solid 1px;
+                    border-color: white;
                 }
+
+            .btns {
+                border-radius: 15px;
+            }
+
+                .btns:hover {
+                    color: #DC3545;
+                }
+
+            .more:hover {
+                color: white;
+                border-radius: 25%;
+                background-color: #DC3545;
+            }
+
+            .morev:hover {
+                color: #DC3545;
+            }
 
             .btn {
                 font-family: 'Baloo 2', cursive;
@@ -38,8 +67,23 @@
                 padding-right: 2px;
             }
 
-            .navitem {
+            .navnew {
                 color: #DC3545;
+                border-color: white;
+            }
+
+                .navnew:hover {
+                    color: white;
+                    border-color: white;
+                }
+
+            .navitem {
+                padding: 3px;
+                color: #DC3545;
+                border: solid;
+                background-color: white;
+                border-radius: 10px;
+                border-color: white;
             }
 
                 .navitem:active {
@@ -47,64 +91,123 @@
                 }
 
                 .navitem:hover {
-                    border-radius: 5px;
-                    background-image: linear-gradient(to right top, #ff0000, #f31514, #e7201f, #da2928, #cd302f, #cd3635, #cc3c3b, #cb4141, #d74848, #e35050, #ef5757, #fb5f5f);
                     color: white;
+                    border: solid;
+                    background-color: #DC3545;
+                    border-radius: 10px;
+                    border-color: #DC3545;
                 }
 
             .logo {
-                border-radius: 10%;
-                background-image: linear-gradient(to right top, #ff0000, #f31514, #e7201f, #da2928, #cd302f, #cd3635, #cc3c3b, #cb4141, #d74848, #e35050, #ef5757, #fb5f5f);
+                border-radius: 10px;
+                background-color: #DC3545;
             }
 
             .logo2 {
                 color: black;
                 border-color: white
             }
+
+            .savebtn {
+                border-radius: 18px;
+                border-color: #DC3545;
+            }
+
+                .savebtn:hover {
+                    border-color: #DC3545;
+                    color: #2A9061;
+                }
+
+            .cancelbtn {
+                border-radius: 18px;
+                border-color: #0D6EFD;
+            }
+
+                .cancelbtn:hover {
+                    border-color: #0D6EFD;
+                    color: #DC3545;
+                }
+
+            .search {
+                border-color: #D7DEE4;
+                color: black;
+            }
+
+                .search:hover {
+                    border-color: #DC3545;
+                    color: #DC3545;
+                }
         </style>
 
-        <nav class="navbar navbar-expand-lg bg-whitet">
+        <nav class="navbar navbar-expand-lg bg-white">
             <div class="container-fluid">
-                <div class="logo" style="padding: 10px;"><a class="" href=""><i class="text-white fa-solid fa-m fa-xl"></i></a></div>
+                <div style="border-color: white;" class="navbar-toggler" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <button style="border-color: white;" class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                        <i class="navbutton fa-solid fa-bars fa-xl text-danger"></i>
+                    </button>
+                </div>
 
-                <h1 class="logo2 navbar-toggler">Manew</h1>
+                <div class="logo" style="padding: 10px;"><a href=""><i class="text-white fa-solid fa-m fa-xl"></i></a></div>
 
-                <button class="menubutton navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-
+                <div style="border-color: white;" class="navbar-toggler">
+                    <a style="border-color: white;" href="search" class="navbutton btn btn-outline-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search text-danger" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </a>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class=" nav-link active" aria-current="page" href="#"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-link" href="#"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class=" nav-link disabled"></a>
-                        </li>
-                    </ul>
-                    <div class="d-flex">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="categories"><i class=" navicon fa-solid fa-icons"></i> Categories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Branches</a>
-                            </li>
-                        </ul>
+                    <div style="margin-left: auto; margin-right: auto;" class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <div class=" me-5 mb-2">
+                            <a href="search" class="col-4 btn btn-outline-light form-control text-danger search">
+                                <i style="visibility: hidden;">My name is Manuel Monteagudo</i>
+                                <svg style="margin-right: 8px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg> Search <i style="visibility: hidden;">My name is Manuel Monteagudo</i>
+                            </a>
+                        </div>
                     </div>
-
+                    <ul class="navbar-nav d-flex">
+                        <li class="nav-item">
+                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="search"><i class="navicon fa-solid fa-magnifying-glass"></i> Search</a>
+                            </li>*@
+                    </ul>
                 </div>
             </div>
         </nav>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Manew</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item">
+                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
         <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+

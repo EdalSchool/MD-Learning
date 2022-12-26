@@ -23,5 +23,6 @@ namespace DataAcces
                 options.UseSqlServer(@"Server=c8xz1duey1.database.windows.net; Database=md-warehouse-project; User ID=mduser; Password=Kn#NeGh0l6zj^!u*CH; MultipleActiveResultSets=true");
             }
         }
+
     }
 }

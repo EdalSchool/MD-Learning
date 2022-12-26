@@ -3,55 +3,61 @@
 @using System.Linq
 @inject NavigationManager NavManager
 
-<title>MANEW | Product Creation</title>
+<title>Manew | Product Creation</title>
 
-<h4><a class="" href=""><i class="text-primary fa-solid fa-circle-left"></i></a> Create a Product</h4>
+<h4><a class="" href=""><i class="text-danger fa-solid fa-angle-left"></i></a> Creating a Product</h4>
 <EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
     <DataAnnotationsValidator />
-    <div class="form-group">
-        <label for="NameInput" >Name</label>
-        <InputText @bind-Value="oProduct.ProductName" class="form-control" id="NameInput" placeholder="Type the name of the new product" />
-        <ValidationMessage For="() => oProduct.ProductName" />
+
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <InputText @bind-Value="oProduct.ProductName" class="form-control" id="floatingInput" placeholder="Product name" />
+                <ValidationMessage For="() => oProduct.ProductName" />
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <h6 for="ReferenceInput">ID</h6>
+                <InputText @bind-Value="oProduct.ProductId" class="form-control" id="ReferenceInput" placeholder="Product ID" />
+                <ValidationMessage For="() => oProduct.ProductId" />
+            </div>
+        </div>
     </div>
+    <br />
     <div class="form-group">
-        <label  for="ReferenceInput">Id</label>
-        <InputText @bind-Value="oProduct.ProductId" class="form-control" id="ReferenceInput" placeholder="Type the product reference" />
-        <ValidationMessage For="() => oProduct.ProductId" />
-    </div>
-          
-    <div class="form-group">
-        <label id="DescriptionInput">Description</label>
-        <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="DescriptionInput" placeholder="Type the product description" />
-        <ValidationMessage For="() => oProduct.ProductDescription" />
-    </div>
-    <div class="form-group">
-        <label>Category</label>
+        <h6>Product Category</h6>
         <InputSelect @bind-Value="oProduct.CategoryId" class="form-control">
-            
-            @if (! categories.Any() )
-        {
-            <option>You have to create a category to create a product</option>
-        }
-        else
-        {
-            <option value="">Select of what category it's the new product</option>
-        }
-            @foreach(var category in categories)
-            {  
-                <option value = "@category.CategoryId">@category.CategoryName (@category.CategoryId.ToUpper())</option>
+
+            @if (!categories.Any())
+            {
+                <option>You have to create a category to create a product</option>
+            }
+            else
+            {
+                <option value="">Select...</option>
+            }
+            @foreach (var category in categories)
+            {
+                if (category.CategoryName == "afgsdasdf")
+                { }
+                else
+                {
+                    <option value="@category.CategoryId">@category.CategoryName (@category.CategoryId)</option>
+                }
             }
         </InputSelect>
         <ValidationMessage For="() => oProduct.CategoryId" />
     </div>
     <br />
-    @if (! categories.Any() )
-    {
-        <a class="btn btn-success" href="category/create"> Create a New Category</a>
-    }
-    else
-    {
-        <input type="submit" class="btn btn-success" value="Add Product" />
-    }
+    <div class="form-group">
+        <h6 id="DescriptionInput">Description</h6>
+        <InputTextArea @bind-Value="oProduct.ProductDescription" class="form-control" id="DescriptionInput" placeholder="Product description" />
+        <ValidationMessage For="() => oProduct.ProductDescription" />
+    </div>
+    <br />
+    <button type="submit" class="savebtn btn"><i style="padding-right: 4px;" class="text-success fa-solid fa-check"></i> Save</button>
+    <a href="" class="cancelbtn btn"><i style="padding-right: 4px;" class="text-danger fa-solid fa-xmark"></i> Cancel</a>
 </EditForm>
 
 @code {
@@ -67,11 +73,11 @@
     }
 
     private void SaveProduct()
-    {   
+    {
         var response = BsProduct.ProductCreation(oProduct);
         if (response.IsSuccessfull)
         {
-            NavManager.NavigateTo("storage/create");
+            NavManager.NavigateTo("");
         }
         else
         {

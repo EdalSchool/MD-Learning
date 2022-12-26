@@ -15,13 +15,18 @@ namespace Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid StudentId { get; set; }
         
+        [Required(ErrorMessage = "Please fill student's name field")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Please fill student's brith date field")]
         public DateTime BirthDate { get; set; }
-        
+
+        [Required(ErrorMessage = "When did the student start homeschooling?")]
         public DateTime HomeSchoolStart { get; set; }
 
         //Relationship with Grades
         public Guid GradeId { get; set; }
+        [Required(ErrorMessage = "Please fill student's grade field")]
         public string Grade { get; set; }
 
         //Relationship with Father
