@@ -1,52 +1,107 @@
 ﻿@using Entities
 @using Business
 
-<title>Manew | @oProduct.ProductName Product View</title>
+<title>Manew | @oProduct.ProductName Product Details</title>
 
-<style>
-    .btns {
-        border-radius: 30px;
-    }
-
-        .btns:hover {
-            color: #DC3545;
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
         }
-</style>
 
-<div class="container">
-    <div class="row-cols-1">
-        <h4><a class="" href=""><i class="text-danger fa-solid fa-angle-left"></i></a> Viewing @oProduct.ProductName</h4>
-        <table class="table table-borderless table-rounded">
-            <tbody>
-                <tr style="border-radius: 10px;" class="">
-                    <th>Name</th>
-                    <td>@oProduct.ProductName</td>
-                </tr>
-                <tr style="border-radius: 10px;" class="">
-                    <th>ID</th>
-                    <td>@oProduct.ProductId</td>
-                </tr>
-                <tr style="border-radius: 10px;" class="">
-                    <th>Category</th>
-                    <td>@oProduct.Category.CategoryName (@oProduct.CategoryId)</td>
-                </tr>
-                <tr style="border-radius: 10px;" class="">
-                    <th>Quantity in Storage</th>
-                    <td>@oProduct.TotalQuantity</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>Description</th>
-                    <td>@oProduct.ProductDescription</td>
-                </tr>
-            </tfoot>
-        </table>
+        .login {
+            width: 100%;
+        margin-top: 100px;
+            display: grid;
+            place-items: center;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            width: 300px;
+        }
+
+        .title {
+            font-size: var(--lg);
+            margin-bottom: 40px;
+            text-align: start;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .form div {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form a {
+                text-decoration: none;
+            }
+
+            .form a:hover {
+                color: var(--hospital-green);
+            }
+
+        .label {
+            font-size: var(--sm);
+            font-weight: bold;
+        }
+
+        .login-btn {
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        .value {
+            color: var(--very-light-pink);
+            font-size: var(--md);
+           margin: 8px 0 30px 0;
+        }
+
+    .secondary-btn {
+        background-color: var(--white);
+        height: 40px;
+        border-radius: 8px;
+        padding-top: 7px;
+        font-size: var(--md);
+        border: 1px solid var(--hospital-green);
+        color: var(--hospital-green);
+        font-weight: bold;
+    }
+    </style>
+
+<body>
+    <div class="login">
+        <div class="form-container">
+            <p class="title">
+                <span><a href=""><i class="fa-solid fa-chevron-left title-icon fa-sm"></i></a></span>
+                <span>@oProduct.ProductName</span>
+            </p>
+
+            <form action="/" class="form">
+                <div>
+                    <label for="name" class="label">Name</label>
+                    <p id="name" class="value">@oProduct.ProductName</p>
+
+                    <label for="product-id" class="label">ID</label>
+                    <p id="product-id" class="value">@oProduct.ProductId</p>
+
+                    <label for="product-category" class="label">Category</label>
+                    <p id="product-category" class="value">@oProduct.Category.CategoryName (@oProduct.CategoryId)</p>
+
+                    <label for="product-description" class="label">Description</label>
+                    <p id="product-description" class="value">@oProduct.ProductDescription</p>
+                </div>
+                
+                <a href="product/update/@oProduct.ProductId" class="secondary-btn login-btn text-center">Edit</a>
+            </form>
+        </div>
     </div>
-</div>
-<a class="btns btn btn-light border border-danger" href="" data-bs-toggle="tooltip" data-bs-placement="top" title="Back"><i style="padding-right: 4px;" class="text-danger fa-solid fa-angle-left"></i> BACK</a>
-<a class="btns btn btn-light border border-danger" href="product/update/@oProduct.ProductId" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Product"><i style="padding-right: 4px;" class="text-danger fa-solid fa-pencil"></i> EDIT</a>
-
+</body>
 
 @code {
     [Parameter]

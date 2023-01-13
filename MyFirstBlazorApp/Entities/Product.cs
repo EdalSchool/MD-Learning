@@ -11,11 +11,11 @@ namespace Entities
     public class Product
     {
         [Key]
-        [Required(ErrorMessage = "Mmmm... The reference field is required")]
+        [Required(ErrorMessage = "Mmmm... The ID field is empty")]
         [StringLength(20, ErrorMessage = "Wait! The product ID must be less than 20 characters")]
         public string ProductId { get; set; }
 
-        [Required(ErrorMessage="Hey! Don't forget to fill the name field")]
+        [Required(ErrorMessage = "Hey! Don't forget to fill the name field")]
         [StringLength(100)]
         public string ProductName { get; set; }
 

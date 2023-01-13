@@ -9,18 +9,72 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <div class="page">
     <main>
         <style>
+            :root {
+                --white: #FFFFFF;
+                --black: #000000;
+                --very-light-pink: #C7C7C7;
+                --text-input-field: #F7F7F7;
+                --hospital-green: #DC3545;
+                --sm: 14px;
+                --md: 16px;
+                --lg: 18px;
+            }
+
+            body {
+                margin: 0;
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            .primary-btn {
+                background-color: var(--hospital-green);
+                border-radius: 8px;
+                height: 40px;
+                font-size: var(--md);
+                border-radius: 8px;
+                border: none;
+                color: var(--white);
+                font-weight: bold;
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            .secondary-btn {
+                background-color: var(--white);
+                border-radius: 8px;
+                height: 40px;
+                font-size: var(--md);
+                border-radius: 8px;
+                border: 1px solid;
+                border-color: var(--hospital-green);
+                color: var(--hospital-green);
+                font-weight: bold;
+                font-family: 'Quicksand', sans-serif;
+            }
+
+            .title {
+                font-size: var(--lg);
+                font-weight: bold;
+                margin-bottom: 30px;
+                white-space: nowrap;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+                .title span a {
+                    text-decoration: none;
+                    color: var(--hospital-green);
+                }
+
+            nav {
+                border-bottom: 1px solid var(--very-light-pink);
+            }
+
             .hidden {
                 display: none;
             }
@@ -56,11 +110,11 @@
             }
 
             .btn {
-                font-family: 'Baloo 2', cursive;
+                font-family: 'Quicksand', sans-serif;
             }
 
             h1, h2, h3, h4, h5, h6, th, td, option, li, p {
-                font-family: 'Baloo 2', cursive;
+                font-family: 'Quicksand', sans-serif;
             }
 
             .navicon {
@@ -137,48 +191,36 @@
                     border-color: #DC3545;
                     color: #DC3545;
                 }
+
+            .nav-items {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
         </style>
 
         <nav class="navbar navbar-expand-lg bg-white">
-            <div class="container-fluid">
+            <div class="container-fluid justify-content-even">
                 <div style="border-color: white;" class="navbar-toggler" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <button style="border-color: white;" class="btn btn-outline-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                         <i class="navbutton fa-solid fa-bars fa-xl text-danger"></i>
                     </button>
                 </div>
 
-                <div class="logo" style="padding: 10px;"><a href=""><i class="text-white fa-solid fa-m fa-xl"></i></a></div>
+                @*<div class="logo" style="padding: 12px;"><a href=""><i class="text-white fa-solid fa-m fa-xl"></i></a></div>*@
 
-                <div style="border-color: white;" class="navbar-toggler">
-                    <a style="border-color: white;" href="search" class="navbutton btn btn-outline-light">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search text-danger" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg>
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <div style="margin-left: auto; margin-right: auto;" class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <div class=" me-5 mb-2">
-                            <a href="search" class="col-4 btn btn-outline-light form-control text-danger search">
-                                <i style="visibility: hidden;">My name is Manuel Monteagudo</i>
-                                <svg style="margin-right: 8px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                </svg> Search <i style="visibility: hidden;">My name is Manuel Monteagudo</i>
-                            </a>
-                        </div>
-                    </div>
+                <div class="nav-items collapse navbar-collapse text-center justify-content-center" id="navbarTogglerDemo02">
                     <ul class="navbar-nav d-flex">
                         <li class="nav-item">
-                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                            <a id="navi" style="font-family: 'Quicksand', sans-serif; font-weight: bold;" class="navitem nav-link" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
+                            <a id="navi" style="font-family: 'Quicksand', sans-serif; font-weight: bold;" class="navitem nav-link" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
+                            <a id="navi" style="font-family: 'Quicksand', sans-serif; font-weight: bold;" class="navitem nav-link" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
                         </li>
                         @*<li class="nav-item">
-                            <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link" href="search"><i class="navicon fa-solid fa-magnifying-glass"></i> Search</a>
+                            <a id="navi" style="font-family: 'Quicksand', sans-serif;, cursive;" class="navitem nav-link" href="search"><i class="navicon fa-solid fa-magnifying-glass"></i> Search</a>
                             </li>*@
                     </ul>
                 </div>
@@ -193,13 +235,13 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav d-flex">
                     <li class="nav-item">
-                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
+                        <a id="navi" style="font-family: 'Quicksand', sans-serif;, cursive;" class="navitem nav-link text-start" aria-current="page" href=""><i class="navicon fa-solid fa-house"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
+                        <a id="navi" style="font-family: 'Quicksand', sans-serif;, cursive;" class="navitem nav-link text-start" href="categories"><i class=" navicon fa-solid fa-shapes"></i> Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a id="navi" style="font-family: 'Staatliches', cursive;" class="navitem nav-link text-start" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
+                        <a id="navi" style="font-family: 'Quicksand', sans-serif;, cursive;" class="navitem nav-link text-start" href="warehouses"><i class="navicon fa-solid fa-warehouse"></i> Warehouses</a>
                     </li>
                 </ul>
             </div>

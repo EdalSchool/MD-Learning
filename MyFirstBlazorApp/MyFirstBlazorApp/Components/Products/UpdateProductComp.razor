@@ -4,23 +4,130 @@
 
 <title>Manew | @oProduct.ProductName Product Edition</title>
 
-<h4><a class="" href=""><i class="text-danger fa-solid fa-angle-left"></i></a> Editing @oProduct.ProductName</h4>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .login {
+        width: 100%;
+        margin-top: 100px;
+        display: grid;
+        place-items: center;
+    }
+
+
+    .form-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form div {
+            display: flex;
+            flex-direction: column;
+        }
+
+    .label {
+        font-size: var(--sm);
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .form-input {
+        margin-bottom: 25px;
+    }
+
+    .input {
+        color: black;
+        background-color: var(--text-input-field);
+        border-color: var(--text-input-field);
+        border-radius: 8px;
+    }
+
+    .form a {
+        text-align: center;
+        font-size: var(--sm);
+        color: var(--hospital-green);
+        text-decoration: none;
+    }
+
+    .login-btn {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    .signup-btn {
+        margin-top: 25px;
+    }
+</style>
+
 <EditForm Model="oProduct" OnValidSubmit=@UpdateProduct>
     <DataAnnotationsValidator />
+    <body class="justify-content-center">
+        <div class="login">
+            <div class="form-container">
+                <p class="title">
+                    <span><a href=""><i class="fa-solid fa-chevron-left title-icon fa-sm"></i></a></span>
+                    <span>Editing '@oProduct.ProductName'</span>
+                </p>
 
-    <div class="form-group">
-        <h6>Name</h6>
-        <InputText class="form-control" @bind-Value="oProduct.ProductName" placeholder="Product name" />
-        <ValidationMessage For="() => oProduct.ProductName" />
-    </div>
-    <br />
-    <div class="form-group">
-        <h6>Description</h6>
-        <InputTextArea class="form-control" @bind-Value="oProduct.ProductDescription" placeholder="Product description" />
-    </div>
-    <br />
-    <button type="submit" class="savebtn btn"><i style="padding-right: 4px;" class="text-success fa-solid fa-check"></i> Save</button>
-    <a href="" class="cancelbtn btn"><i style="padding-right: 4px;" class="text-danger fa-solid fa-xmark"></i> Cancel</a>
+                <div class="form">
+                    <div>
+                        <div class="form-input">
+                            <label for="name-input" class="label">Name</label>
+                            <InputText @bind-Value="oProduct.ProductName" class="input form-control" id="name-input" placeholder="Product name" />
+                            <ValidationMessage For="() => oProduct.ProductName" />
+                        </div>
+
+                        <div class="form-input">
+                            <label for="product-id" class="label">ID</label>
+                            <InputText @bind-Value="oProduct.ProductId" class="input form-control" id="product-id" placeholder="Product ID" />
+                            <ValidationMessage For="() => oProduct.ProductId" />
+                        </div>
+
+                        <div class="form-group form-input">
+                            <label for="product-category" class="label">Category</label>
+                            <InputSelect @bind-Value="oProduct.CategoryId" class="input form-control form-select" id="product-category">
+
+                                @if (!categories.Any())
+                                {
+                                    <option>Please create a category</option>
+                                }
+                                else
+                                {
+                                    @foreach (var category in categories)
+                                    {
+                                        if (category.CategoryName == "afgsdasdf")
+                                        { }
+                                        else
+                                        {
+                                            <option class="text-black" value="@category.CategoryId">@category.CategoryName (@category.CategoryId)</option>
+                                        }
+                                    }
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="() => oProduct.CategoryId" />
+                        </div>
+
+                        <div class="form-input">
+                            <label for="description-input" class="label">Description</label>
+                            <InputTextArea @bind-Value="oProduct.ProductDescription" class="input form-control" id="description-input" placeholder="Product description" />
+                            <ValidationMessage For="() => oProduct.ProductDescription" />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn signup-btn">Update</button>
+                </div>
+            </div>
+        </div>
+    </body>
 </EditForm>
 
 @code {

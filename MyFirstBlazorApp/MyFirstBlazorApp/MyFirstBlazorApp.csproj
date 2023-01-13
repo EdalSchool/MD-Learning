@@ -59,6 +59,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\My project %281%29.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
