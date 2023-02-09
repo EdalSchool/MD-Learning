@@ -14,7 +14,7 @@ namespace Entities
         public string InOutId { get; set; }
         [Required]
         public DateTime InOutDate { get; set; }
-        [Required]
+        [Required (ErrorMessage = "The Quantity field must be a number")]
         public int Quantity { get; set; }
         public bool IsInput { get; set; }
 

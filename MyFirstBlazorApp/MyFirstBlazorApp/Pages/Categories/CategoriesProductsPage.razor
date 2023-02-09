@@ -1,6 +1,6 @@
-﻿@page "/category/remove/{IdCategory}"
+﻿@page "/category/{IdCategory}"
 
-<CategoryDeletionComp IdCategory="@IdCategory"/>
+<CategoryProductsComp IdCategory="@IdCategory" />
 
 @code {
     [Parameter]
@@ -11,4 +11,3 @@
         IdCategory = IdCategory;
     }
 }
- 

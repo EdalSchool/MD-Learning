@@ -3,64 +3,64 @@
 
 <title>Manew | @oProduct.ProductName Product Details</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Quicksand', sans-serif;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
 
-        .login {
-            width: 100%;
+    .login {
+        width: 100%;
         margin-top: 100px;
-            display: grid;
-            place-items: center;
-        }
+        display: grid;
+        place-items: center;
+    }
 
-        .form-container {
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-            width: 300px;
-        }
+    .form-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
 
-        .title {
-            font-size: var(--lg);
-            margin-bottom: 40px;
-            text-align: start;
-        }
+    .title {
+        font-size: var(--lg);
+        margin-bottom: 40px;
+        text-align: start;
+    }
 
-        .form {
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form div {
             display: flex;
             flex-direction: column;
         }
 
-            .form div {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .form a {
-                text-decoration: none;
-            }
+        .form a {
+            text-decoration: none;
+        }
 
             .form a:hover {
                 color: var(--hospital-green);
             }
 
-        .label {
-            font-size: var(--sm);
-            font-weight: bold;
-        }
+    .label {
+        font-size: var(--sm);
+        font-weight: bold;
+    }
 
-        .login-btn {
-            margin-top: 15px;
-            margin-bottom: 30px;
-        }
+    .login-btn {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
 
-        .value {
-            color: var(--very-light-pink);
-            font-size: var(--md);
-           margin: 8px 0 30px 0;
-        }
+    .value {
+        color: var(--very-light-pink);
+        font-size: var(--md);
+        margin: 8px 0 30px 0;
+    }
 
     .secondary-btn {
         background-color: var(--white);
@@ -72,7 +72,7 @@
         color: var(--hospital-green);
         font-weight: bold;
     }
-    </style>
+</style>
 
 <body>
     <div class="login">
@@ -93,10 +93,13 @@
                     <label for="product-category" class="label">Category</label>
                     <p id="product-category" class="value">@oProduct.Category.CategoryName (@oProduct.CategoryId)</p>
 
+                    <label for="product-quantity" class="label">Quantity in storage</label>
+                    <p id="product-quantity" class="value">@oProduct.TotalQuantity</p>
+
                     <label for="product-description" class="label">Description</label>
                     <p id="product-description" class="value">@oProduct.ProductDescription</p>
                 </div>
-                
+
                 <a href="product/update/@oProduct.ProductId" class="secondary-btn login-btn text-center">Edit</a>
             </form>
         </div>

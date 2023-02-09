@@ -87,36 +87,6 @@
                         </div>
 
                         <div class="form-input">
-                            <label for="product-id" class="label">ID</label>
-                            <InputText @bind-Value="oProduct.ProductId" class="input form-control" id="product-id" placeholder="Product ID" />
-                            <ValidationMessage For="() => oProduct.ProductId" />
-                        </div>
-
-                        <div class="form-group form-input">
-                            <label for="product-category" class="label">Category</label>
-                            <InputSelect @bind-Value="oProduct.CategoryId" class="input form-control form-select" id="product-category">
-
-                                @if (!categories.Any())
-                                {
-                                    <option>Please create a category</option>
-                                }
-                                else
-                                {
-                                    @foreach (var category in categories)
-                                    {
-                                        if (category.CategoryName == "afgsdasdf")
-                                        { }
-                                        else
-                                        {
-                                            <option class="text-black" value="@category.CategoryId">@category.CategoryName (@category.CategoryId)</option>
-                                        }
-                                    }
-                                }
-                            </InputSelect>
-                            <ValidationMessage For="() => oProduct.CategoryId" />
-                        </div>
-
-                        <div class="form-input">
                             <label for="description-input" class="label">Description</label>
                             <InputTextArea @bind-Value="oProduct.ProductDescription" class="input form-control" id="description-input" placeholder="Product description" />
                             <ValidationMessage For="() => oProduct.ProductDescription" />

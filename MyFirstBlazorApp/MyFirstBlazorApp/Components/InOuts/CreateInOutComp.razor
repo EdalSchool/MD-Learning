@@ -1,69 +1,138 @@
 ﻿@using Entities
 @using Business
 
-<title>Manew | Register an Entry or an Exit</title>
-
+<title>Manew | Register a purchase or a sale</title>
 
 <style>
-    .info {
-        border-radius: 10px;
-        background-color: #DC3545;
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
     }
 
-    .a-link {
-        text-decoration: underline dotted white;
+    .login {
+        width: 100%;
+        margin-top: 100px;
+        display: grid;
+        place-items: center;
     }
 
-        .a-link:hover {
-            text-decoration: underline white;
+
+    .form-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form div {
+            display: flex;
+            flex-direction: column;
         }
+
+    .label {
+        font-size: var(--sm);
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .form-input {
+        margin-bottom: 25px;
+    }
+
+    .input {
+        color: black;
+        background-color: var(--text-input-field);
+        border-color: var(--text-input-field);
+        border-radius: 8px;
+    }
+
+    .form a {
+        text-align: center;
+        font-size: var(--sm);
+        color: var(--hospital-green);
+        text-decoration: none;
+    }
+
+    .login-btn {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    .signup-btn {
+        margin-top: 25px;
+    }
+
+    .storein-alert {
+        padding: 6px;
+        border-radius: 12px;
+        background-color: var(--hospital-green);
+    }
 </style>
 
-<div>
-    <p class="info text-white" style="padding: 10px;"><i style="padding-right: 14px;" class="text-white fa-solid fa-circle-exclamation fa-xl"></i> <strong>Remember!</strong> To register an entry or exit of a product, you must first <a class="text-white a-link" href="storage/create">store it</a> in its proper Warehouse</p>
-</div>
-<br />
-<h4><a class="" href=""><i class="text-danger fa-solid fa-angle-left"></i></a> Registering an @h4Value</h4>
-<div class="form-group">
-    <h6>Select a Warehouse...</h6>
-    <select class="form-select" @onchange="ChangedWarehouse">
-        <option value="">Select a warehouse...</option>
-        @foreach (var warehouse in warehouses)
-        {
-            <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
-        }
-    </select>
-</div>
-<br />
 <EditForm Model="oInOut" OnValidSubmit="@SaveInOut">
     <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="form-group">
-        <h6>Select a Product...</h6>
-        <InputSelect class="form-select" @bind-Value="oInOut.StorageId">
-            <option value="">Select a product...</option>
-            @foreach (var storage in storages)
-            {
-                <option value="@storage.StorageId">@storage.Product.ProductName</option>
-            }
-        </InputSelect>
-    </div>
-    <br />
-    <div class="form-group">
-        <h6>How much?</h6>
-        <InputNumber class="form-control" @bind-Value="oInOut.Quantity" />
-    </div>
-    <br />
-    <div calss="form-group">
-        <label>It's a Purcahse?</label> <InputCheckbox class="form-check-input active" type="check" @bind-Value="oInOut.IsInput" /> <label>@labelValue</label>
-    </div>
-    <br />
-    <div>
-        <button type="submit" class="savebtn btn"><i style="padding-right: 4px;" class="text-success fa-solid fa-check"></i> @buttonValue</button>
-        <a href="" class="cancelbtn btn"><i style="padding-right: 4px;" class="text-danger fa-solid fa-xmark"></i> Cancel</a>
-    </div>
+    <body class="d-flex justify-content-center">
+        <div class="login">
+            <div class="form-container">
+                <p class="title">
+                    <span><a href=""><i class="fa-solid fa-chevron-left title-icon fa-sm"></i></a></span>
+                    <span>Registering @h4Value</span>
+                </p>
+
+                <div class="form">
+                    <div>
+                        <a class="btns btn btn-sm btn-light border border-danger" href="storage/create" data-bs-toggle="tooltip" data-bs-placement="top" title="To register a purcahse or a sale you must store the product in its proper warehouse">
+                            Store a product in a warehouse
+                        </a>
+
+                        <div class="form-input">
+                            <ValidationMessage For="() => oInOut.StorageId" />
+                        </div>
+                        <div class="form-group form-input">
+                            <label for="inout-warehouse" class="label">Warehouse</label>
+                            <select @onchange="ChangedWarehouse" class="input form-control form-select" id="inout-warehouse">
+                                <option value="">Select...</option>
+                                @foreach (var warehouse in warehouses)
+                                {
+                                    <option value="@warehouse.WarehouseId">@warehouse.WarehouseName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group form-input">
+                            <label for="inout-product" class="label">Product</label>
+                            <InputSelect @bind-Value="oInOut.StorageId" class="input form-control form-select" id="inout-product">
+                                <option value="">Select...</option>
+                                @foreach (var storage in storages)
+                                {
+                                    <option value="@storage.StorageId">@storage.Product.ProductName</option>
+                                }
+                            </InputSelect>
+                        </div>
+
+                        <div class="form-input">
+                            <label for="number-input" class="label">Quantity</label>
+                            <InputNumber @bind-Value="oInOut.Quantity" class="input form-control" id="number-input" />
+                            <ValidationMessage For="() => oInOut.Quantity" />
+                        </div>
+
+                        <p class="form-input">
+                            <span><InputCheckbox class="form-check-input active" id="input-checkbox" type="check" @bind-Value="oInOut.IsInput" /></span> <span>@labelValue</span>
+                        </p>
+                    </div>
+
+                    <button type="submit" class="primary-btn signup-btn">@buttonValue</button>
+                    <br />
+                    <p class="text-center">@message</p>
+                </div>
+            </div>
+        </div>
+    </body>
 </EditForm>
-<h4 class="text-center">@message</h4>
 
 @code {
     List<Warehouse> warehouses = new List<Warehouse>();
@@ -73,9 +142,9 @@
     Storage oStorage = new Storage();
 
     string message = "";
-    string h4Value => oInOut.IsInput ? "Entry" : "Output";
-    string labelValue => oInOut.IsInput ? "Yes" : "No, it's a Sale";
-    string buttonValue => oInOut.IsInput ? "Check In" : "Check Out";
+    string h4Value => oInOut.IsInput ? "a purchase" : "a sale";
+    string labelValue => oInOut.IsInput ? "This is a purchase" : "This is a sale";
+    string buttonValue => oInOut.IsInput ? "Check In" : "Check out";
 
     protected override async Task OnInitializedAsync()
     {
@@ -94,6 +163,7 @@
         oStorage = storages.LastOrDefault(s => s.StorageId == oInOut.StorageId);
         oProduct = oStorage.Product;
 
+
         if (oInOut.IsInput)
         {
             oStorage.ProductQuantity = oStorage.ProductQuantity + oInOut.Quantity;
@@ -102,7 +172,7 @@
             oProduct.TotalQuantity = oProduct.TotalQuantity + oInOut.Quantity;
             BsProduct.ProductUpdate(oProduct);
 
-            message = $"The product {oProduct.ProductName} changes were successfully saved";
+            message = $"The product '{oProduct.ProductName}' changes were successfully saved";
         }
         else
         {
@@ -112,16 +182,18 @@
                 BsStorage.StorageUpdate(oStorage);
 
                 oProduct.TotalQuantity = oProduct.TotalQuantity - oInOut.Quantity;
-                BsProduct.ProductUpdate(oProduct); 
+                BsProduct.ProductUpdate(oProduct);
 
-                message = $"TThe product {oProduct.ProductName} changes were successfully saved";
+                message = $"The product '{oProduct.ProductName}' chagnes were successfully saved";
             }
             else
             {
-                message = $"The quantity of the product {oProduct.ProductName} is less than the quantity for sale";
+                message = $"The quantity of the product '{oProduct.ProductName}' is less than the quantity for sale";
             }
         }
     }
+
+
 
     private bool ItsBiggerThanZero(int quantity, int storageQuantity)
     {

@@ -71,7 +71,7 @@
 
 <EditForm Model="oProduct" OnValidSubmit=@SaveProduct>
     <DataAnnotationsValidator />
-    <body class="justify-content-center">
+    <body class="d-flex justify-content-center">
         <div class="login">
             <div class="form-container">
                 <p class="title">
@@ -99,10 +99,12 @@
 
                                 @if (!categories.Any())
                                 {
-                                    <option>Please create a category</option>
+                                    <option value="">Please create a category</option>
                                 }
                                 else
                                 {
+                                    <option value="">Select...</option>
+
                                     @foreach (var category in categories)
                                     {
                                         if (category.CategoryName == "afgsdasdf")
