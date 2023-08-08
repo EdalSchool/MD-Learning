@@ -2,8 +2,9 @@
 @using Entities
 @inject NavigationManager NavManager
 
-<title>Manew | @oCategory.CategoryName Category Deletion</title>
-<EditForm Model="oCategory" OnValidSubmit=@DeleteCategory>
+@*<title>Manew | Deleting category '@oCategory.CategoryName'</title>*@
+
+@*<EditForm Model="oCategory" OnValidSubmit=@DeleteCategory>
     <div class="container">
         <div class="row-cols-sm-1">
             <h4><a class="categories" href="categories"><i class="text-danger fa-solid fa-angle-left"></i></a> Deleting @oCategory.CategoryName</h4>
@@ -17,8 +18,110 @@
             </div>
         </div>
     </div>
-</EditForm>
+</EditForm>*@
 
+<style>
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .login {
+        width: 100%;
+        margin-top: 100px;
+        display: grid;
+        place-items: center;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
+
+    .logo {
+        width: 150px;
+        margin-bottom: 30px;
+        justify-self: center;
+        display: none;
+    }
+
+    .title {
+        font-size: var(--lg);
+        margin-bottom: 0px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: var(--md);
+        text-align: center;
+    }
+
+    .alert-image {
+        width: 170px;
+        padding: 10px;
+        background-color: var(--text-input-field);
+        justify-self: center;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .resend {
+        font-size: var(--sm);
+        justify-self: center;
+    }
+
+        .resend span {
+            color: var(--very-light-pink);
+        }
+
+        .resend a {
+            color: var(--hospital-green);
+            text-decoration: none;
+        }
+
+    .secondary-btn {
+        text-decoration: none;
+        background-color: var(--white);
+        height: 40px;
+        border-radius: 8px;
+        padding-top: 7px;
+        font-size: var(--md);
+        border: 1px solid #0D6EFD;
+        color: #0D6EFD;
+        font-weight: bold;
+    }
+
+    .login-btn {
+        margin-top: 15px;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+
+    .subtitle small span {
+        font-weight: bold;
+    }
+</style>
+
+<EditForm Model="oCategory" OnValidSubmit=@DeleteCategory>
+    <body>
+        <div class="login">
+            <h1 class="title">STOP!</h1>
+            <p class="subtitle">
+                Are you sure you want delete this category?
+                <br />
+                <small>'<span>@oCategory.CategoryName</span>' and any product in it will be deleted forever</small>
+            </p>
+            <div class="form-container">
+                <img class="alert-image" src="./css/My project (1).png" alt="alert" />
+
+                <input value="Delete" type="submit" class="btn btn-outline-danger login-btn">
+                <a href="/categories" class="secondary-btn login-btn text-center">Cancel</a>
+            </div>
+        </div>
+    </body>
+</EditForm>
 
 @code {
     [Parameter]
@@ -34,6 +137,6 @@
     private void DeleteCategory()
     {
         BsCategory.CategoryDeletion(oCategory);
-        NavManager.NavigateTo("categories");
+        NavManager.NavigateTo("/categories");
     }
 }

@@ -4,9 +4,102 @@
 
 <title>Manew | Categories</title>
 
-<h4>Categories</h4>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
 
-<a class="btns btn btn-sm btn-light border border-danger" href="category/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Cateogory"><i class="text-danger fa-solid fa-plus"></i> NEW</a>
+    .my-order {
+        width: 100%;
+        margin-top: 100px;
+        display: grid;
+        place-items: center;
+    }
+
+    .my-order-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 400px;
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    .my-order-content {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--text-input-field);
+        padding: 12px;
+        padding-top: 24px;
+        border-radius: 20px;
+    }
+
+    .order {
+        border-radius: 12px;
+        padding: 14px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+        .order:hover {
+            background-color: #ECECEC;
+        }
+
+    .label {
+        font-size: var(--sm);
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .order p:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .order p span:nth-child(1) {
+        color: black;
+        font-weight: bold;
+        font-size: var(--md);
+        white-space: nowrap;
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .order p span:nth-child(2) {
+        font-weight: var(--sm);
+        color: var(--very-light-pink);
+    }
+
+    .order div.dropdown {
+        text-align: end;
+    }
+
+    .search-input {
+        margin-bottom: 18px;
+    }
+
+    .categories-ipnut {
+        margin-bottom: 9px;
+    }
+
+    .btns-group {
+        margin-bottom: 9px;
+    }
+
+    .results {
+        font-size: var(--sm);
+        font-weight: bold;
+    }
+</style>
+
+@*<a class="btns btn btn-sm btn-light border border-danger" href="category/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Cateogory"><i class="text-danger fa-solid fa-plus"></i> NEW</a>
 <br />
 <br />
 
@@ -35,7 +128,7 @@
                 @foreach (var category in categories)
                 {
                     if (category.CategoryName == "afgsdasdf")
-                    {}
+                    { }
                     else
                     {
                         if (category.CategoryName.ToLower().Contains(search.ToLower()))
@@ -63,7 +156,62 @@
             </tbody>
         </table>
     </div>
-</div>
+</div>*@
+
+<body class="">
+    <div class="my-order">
+        <div class="my-order-container">
+            <h1 class="title">Categories</h1>
+
+            <div class="btns-group">
+                <a class="btns btn btn-sm btn-light border border-danger" href="category/create" data-bs-toggle="tooltip" data-bs-placement="top" title="New Category"><i class="text-danger fa-solid fa-plus"></i> NEW</a>
+            </div>
+
+            <EditForm Model="search" class="search-input">
+                <div class="form-group input-group">
+                    <InputText type="search" style="border-radius: 10px; margin-right: 10px;" @bind-Value="search" class="form-control" placeholder="Search..." />
+                    <button style="border-radius: 10px;" class="btn btn-danger" type="submit" id="button-addon1">
+                        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                    </button>
+                </div>
+            </EditForm>
+
+            <div class="my-order-content">
+                @foreach (var category in categories)
+                {
+                    if (category.CategoryName == "afgsdasdf")
+                    { }
+                    else
+                    {
+                        if (category.CategoryName.ToLower().Contains(search.ToLower()))
+                        {
+                            <a href="category/@category.CategoryId" style="text-decoration: none;" class="order justify-content-center">
+                                <div>
+                                    <p>
+                                        <span>@category.CategoryName</span>
+                                        <span>@category.CategoryId</span>
+                                    </p>
+                                </div>
+                                <p></p>
+                                <div class="dropdown dropend">
+                                    <div class="btn btn-outline-danger" style="padding: auto; border: none; border-radius: 10px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa-solid fa-angle-right fa-lg"></i>
+                                    </div>
+                                    <ul class="dropdown-menu">
+                                        <li><h6 class="dropdown-header">Actions</h6></li>
+                                        <li><a class="dropdown-item" href="category/@category.CategoryId"><i style="padding-right: 7px;" class="text-primary fa-solid fa-eye text-danger"></i> View</a></li>
+                                        <li><a class="dropdown-item" href="category/update/@category.CategoryId"><i style="padding-right: 7px" class="text-danger fa-solid fa-pencil"></i> Edit</a></li>
+                                        <li><a class="dropdown-item text-danger" href="category/remove/@category.CategoryId"><i style="padding-right: 7px;" class="text-danger fa-regular fa-trash-can"></i> Delete</a></li>
+                                    </ul>
+                                </div>
+                            </a>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</body>
 
 @if (!categories.Any())
 {

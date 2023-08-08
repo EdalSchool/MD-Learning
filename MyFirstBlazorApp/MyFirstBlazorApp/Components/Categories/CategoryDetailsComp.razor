@@ -26,12 +26,9 @@
     }
 
     .my-order-content {
+        margin-top: 12px;
         display: flex;
         flex-direction: column;
-        background-color: var(--text-input-field);
-        padding: 12px;
-        padding-top: 24px;
-        border-radius: 20px;
     }
 
     .order {
@@ -49,7 +46,6 @@
 
 
         .order p span:nth-child(1) {
-            font-weight: bold;
             font-size: var(--md);
             white-space: nowrap;
             width: 300px;
@@ -123,7 +119,7 @@
     <div class="my-order">
         <div class="">
             <p class="title">
-                <span><a href=""><i class="fa-solid fa-chevron-left title-icon fa-sm"></i></a></span>
+                <span><a href="/categories"><i class="fa-solid fa-chevron-left title-icon fa-sm"></i></a></span>
                 <span>@oCategory.CategoryName</span>
             </p>
 
@@ -135,11 +131,9 @@
                     <label for="product-id" class="label">ID</label>
                     <p id="product-id" class="value">@oCategory.CategoryId</p>
 
-                    @*<label for="category-products" class="label">Products</label>*@
+                    <label for="category-products" class="label text-start">Products in this category</label>
                     <div id="category-products" class="my-order-content">
-
                         <div class="order text-start">
-                            <p class="label">'@oCategory.CategoryName' products</p>
                             @foreach (var product in products)
                             {
                                 if (product.CategoryId.ToLower() == oCategory.CategoryId.ToLower())
@@ -149,6 +143,7 @@
                                             <span>@product.ProductName</span>
                                             <span>@product.ProductId</span>
                                         </p>
+                                        <hr/>
                                     </div>
                                 }
                             }
@@ -179,11 +174,5 @@
         oCategory = BsCategory.CategoryById(IdCategory);
         products = BsProduct.ProductList();
         categories = BsCategory.CategoryList();
-    }
-
-    private void UpdateCategory()
-    {
-        BsCategory.CategoryUpdate(oCategory);
-        NavManager.NavigateTo("categories");
     }
 }

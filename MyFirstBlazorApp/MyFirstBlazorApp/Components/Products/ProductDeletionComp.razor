@@ -2,105 +2,105 @@
 @using Entities
 @inject NavigationManager NavManager
 
-<title>Manew | @oProduct.ProductName Product Deletion</title>
+<title>Manew | Removing product '@oProduct.ProductName'</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .login {
+        width: 100%;
+        margin-top: 100px;
+        display: grid;
+        place-items: center;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 300px;
+    }
+
+    .logo {
+        width: 150px;
+        margin-bottom: 30px;
+        justify-self: center;
+        display: none;
+    }
+
+    .title {
+        font-size: var(--lg);
+        margin-bottom: 0px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: var(--md);
+        text-align: center;
+    }
+
+    .alert-image {
+        width: 170px;
+        padding: 10px;
+        background-color: var(--text-input-field);
+        justify-self: center;
+        border-radius: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .resend {
+        font-size: var(--sm);
+        justify-self: center;
+    }
+
+        .resend span {
+            color: var(--very-light-pink);
+        }
+
+        .resend a {
+            color: var(--hospital-green);
+            text-decoration: none;
+        }
+
+    .secondary-btn {
+        text-decoration: none;
+        background-color: var(--white);
+        height: 40px;
+        border-radius: 8px;
+        padding-top: 7px;
+        font-size: var(--md);
+        border: 1px solid #0D6EFD;
+        color: #0D6EFD;
+        font-weight: bold;
+    }
+
+    .login-btn {
+        margin-top: 15px;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+
+    .subtitle small span {
+        font-weight: bold;
+    }
+</style>
 
 <EditForm Model="oProduct" OnValidSubmit=@DeleteProduct>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        .login {
-            width: 100%;
-            margin-top: 100px;
-            display: grid;
-            place-items: center;
-        }
-
-        .form-container {
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-            width: 300px;
-        }
-
-        .logo {
-            width: 150px;
-            margin-bottom: 30px;
-            justify-self: center;
-            display: none;
-        }
-
-        .title {
-            font-size: var(--lg);
-            margin-bottom: 0px;
-            text-align: center;
-        }
-
-        .subtitle {
-            font-size: var(--md);
-            text-align: center;
-        }
-
-        .alert-image {
-            width: 170px;
-            padding: 10px;
-            background-color: var(--text-input-field);
-            justify-self: center;
-            border-radius: 20px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .resend {
-            font-size: var(--sm);
-            justify-self: center;
-        }
-
-            .resend span {
-                color: var(--very-light-pink);
-            }
-
-            .resend a {
-                color: var(--hospital-green);
-                text-decoration: none;
-            }
-
-        .secondary-btn {
-            text-decoration: none;
-            background-color: var(--white);
-            height: 40px;
-            border-radius: 8px;
-            padding-top: 7px;
-            font-size: var(--md);
-            border: 1px solid #0D6EFD;
-            color: #0D6EFD;
-            font-weight: bold;
-        }
-
-        .login-btn {
-            margin-top: 15px;
-            font-weight: bold;
-            border-radius: 8px;
-        }
-
-        .subtitle small span {
-            font-weight: bold;
-        }
-    </style>
-
     <body>
         <div class="login">
             <h1 class="title">STOP!</h1>
             <p class="subtitle">
-                Are you sure you want delete this product?
+                Are you sure you want remove this product?
                 <br />
-                <small>'<span>@oProduct.ProductName</span>' will be deleted forever</small>
+                <small>'<span>@oProduct.ProductName</span>' will be removed forever</small>
             </p>
             <div class="form-container">
                 <img class="alert-image" src="./css/My project (1).png" alt="alert" />
 
-                <input value="Delete" type="submit" class="btn btn-outline-danger login-btn">
+                <input value="Remove" type="submit" class="btn btn-outline-danger login-btn">
                 <a href="" class="secondary-btn login-btn text-center">Cancel</a>
             </div>
         </div>

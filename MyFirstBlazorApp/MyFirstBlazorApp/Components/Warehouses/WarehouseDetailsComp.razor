@@ -1,0 +1,178 @@
+﻿@using Entities
+@using Business
+@inject NavigationManager NavManager
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    .my-order {
+        width: 100%;
+        margin-top: 100px;
+        display: grid;
+        place-items: center;
+    }
+
+    .my-order-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 400px;
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    .my-order-content {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .order {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+        .order p:nth-child(1) {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .order p span:nth-child(1) {
+            font-size: var(--md);
+            white-space: nowrap;
+            width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .order p span:nth-child(2) {
+            font-weight: var(--sm);
+            color: var(--very-light-pink);
+        }
+
+        .order div.dropdown {
+            text-align: end;
+        }
+
+    .search-input {
+        margin-bottom: 18px;
+    }
+
+    .categories-ipnut {
+        margin-bottom: 9px;
+    }
+
+    .btns-group {
+        margin-bottom: 9px;
+    }
+
+    .title {
+        font-size: var(--lg);
+        margin-bottom: 40px;
+        text-align: start;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form a {
+            text-decoration: none;
+        }
+
+            .form a:hover {
+                color: var(--hospital-green);
+            }
+
+    .label {
+        font-size: var(--sm);
+        font-weight: bold;
+    }
+
+    .login-btn {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+    .value {
+        color: var(--very-light-pink);
+        font-size: var(--md);
+        margin: 8px 0 30px 0;
+    }
+</style>
+
+<body class="">
+    <div class="my-order">
+        <div class="">
+            <p class="title">
+                <span><a href="/categories"><i class="fa-solid fa-chevron-left title-icon fa-sm"></i></a></span>
+                <span>@oWarehouse.WarehouseName</span>
+            </p>
+
+            <form action="/" class="form">
+                <div>
+                    <label for="name" class="label">Name</label>
+                    <p id="name" class="value">@oWarehouse.WarehouseName</p>
+
+                    <label for="product-id" class="label">ID</label>
+                    <p id="product-id" class="value">@oWarehouse.WarehouseId</p>
+
+                    <label for="category-products" class="label text-start">Products stored in this warehouse</label>
+                    <div id="category-products" class="my-order-content">
+                        <div class="order text-start">
+                            @foreach (var product in products)
+                            {
+                                @*if (product.Storages.ToLower() == oWarehouse.WarehouseName.ToLower())
+                                {*@
+                                    <div>
+                                        <p>
+                                            <span>@product.ProductName</span>
+                                            <span>@product.ProductId</span>
+                                        </p>
+                                        <hr />
+                                    </div>
+                                @*}*@
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+@code {
+    [Parameter]
+    public string IdWarehouse { get; set; }
+
+    string search = "";
+    string warehouse = "";
+
+    List<Product> products = new List<Product>();
+    List<Warehouse> warehouses = new List<Warehouse>();
+
+    Product product = new Product();
+    Warehouse oWarehouse = new Warehouse();
+
+    protected override async Task OnInitializedAsync()
+    {
+        oWarehouse = BsWarehouse.WarehouseById(IdWarehouse);
+        products = BsProduct.ProductList();
+        warehouses = BsWarehouse.WarehouseList();
+    }
+}
